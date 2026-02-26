@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sergio Garcia — Media Analytics &amp; Public Relations</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="alternate icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIj48cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI0IiBmaWxsPSIjMDA2ODQ3Ii8+PHJlY3QgeD0iMCIgeT0iMjUiIHdpZHRoPSIzMiIgaGVpZ2h0PSI3IiBmaWxsPSIjQkY1NzAwIi8+PHRleHQgeD0iMTYiIHk9IjIxIiBmb250LWZhbWlseT0iR2VvcmdpYSwgc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjRkFGOEY0IiBsZXR0ZXItc3BhY2luZz0iMSI+U0c8L3RleHQ+PC9zdmc+" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green:        #006847;
+      --green-dark:   #004d34;
+      --green-light:  #E8F2ED;
+      --orange:       #BF5700;   /* UT burnt orange */
+      --orange-dark:  #994400;
+      --orange-light: #FBF0E8;
+      --slate:        #3D5A6B;   /* trustworthy data accent */
+      --slate-light:  #EBF0F3;
+      --white:        #FAF8F4;
+      --cream:        #F3EDE2;
+      --dark:         #1C1C1C;
+      --warm-gray:    #6A6360;
+      --border:       #DED8CE;
+    }
+
+```
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Barlow', sans-serif;
+  background-color: var(--white);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.1rem 3rem;
+  background: rgba(250,248,244,0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 3px solid var(--green);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif; font-weight: 900;
+  font-size: 1.35rem; color: var(--dark); text-decoration: none;
+}
+.nav-logo span { color: var(--green); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.82rem; letter-spacing: 1.8px; text-transform: uppercase;
+  color: var(--warm-gray); text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--green); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  padding-top: 80px;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  align-items: center;
+  gap: 0;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Cream diagonal background on right */
+.hero::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 52%; height: 100%;
+  background: var(--cream);
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+  z-index: 0;
+}
+
+.hero-left {
+  position: relative; z-index: 1;
+  padding: 5rem 3.5rem 5rem 5rem;
+  display: flex; flex-direction: column; justify-content: center;
+}
+
+.hero-right {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 4rem 3rem 4rem 2rem;
+  gap: 1.5rem;
+}
+
+.hero-tag {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--orange); margin-bottom: 1.25rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.hero-tag::before {
+  content: ''; width: 32px; height: 2px; background: var(--green); flex-shrink: 0;
+}
+
+.hero-name {
+  font-family: 'Playfair Display', serif; font-weight: 900;
+  font-size: clamp(3rem, 5.5vw, 5.5rem); line-height: 0.95; color: var(--dark);
+}
+.hero-name .last { color: var(--green); display: block; }
+
+.hero-title {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.92rem; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--warm-gray); margin: 1rem 0 1.75rem;
+}
+
+.hero-bio {
+  font-size: 1rem; line-height: 1.85;
+  color: var(--warm-gray); max-width: 440px; margin-bottom: 2.25rem;
+}
+.hero-bio strong { color: var(--dark); font-weight: 600; }
+
+.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.btn-primary {
+  background: var(--green); color: var(--white); padding: 0.85rem 2.2rem;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase;
+  text-decoration: none; display: inline-block;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); }
+
+.btn-secondary {
+  background: transparent; color: var(--dark); padding: 0.85rem 2.2rem;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase;
+  text-decoration: none; display: inline-block;
+  border: 2px solid var(--dark);
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
+}
+.btn-secondary:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+
+/* ── HEADSHOT ── */
+.headshot-wrap {
+  position: relative;
+  width: 280px; height: 340px;
+  flex-shrink: 0;
+}
+/* Decorative offset border behind the photo */
+.headshot-wrap::before {
+  content: '';
+  position: absolute;
+  top: 12px; left: 12px;
+  width: 100%; height: 100%;
+  border: 3px solid var(--orange);
+  z-index: 0;
+}
+.headshot-img {
+  position: relative; z-index: 1;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top;
+  display: block;
+  border: 3px solid var(--green);
+}
+.headshot-fallback {
+  position: relative; z-index: 1;
+  display: none;
+  width: 100%; height: 100%;
+  background: var(--green-light);
+  border: 3px solid var(--green);
+  align-items: center; justify-content: center; flex-direction: column;
+  gap: 0.5rem;
+}
+.headshot-fallback .hf-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--border); display: flex; align-items: center; justify-content: center;
+}
+.headshot-fallback .hf-icon svg { width: 36px; height: 36px; fill: var(--warm-gray); }
+.headshot-fallback span {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--warm-gray); text-align: center;
+}
+
+/* Flag strip under headshot */
+.flag-strip {
+  display: flex; height: 5px; width: 280px;
+}
+.flag-strip span:nth-child(1) { background: var(--green); flex: 1; }
+.flag-strip span:nth-child(2) { background: var(--white); flex: 1; border: 1px solid var(--border); }
+.flag-strip span:nth-child(3) { background: var(--orange); flex: 1; }
+
+/* ── SHARED ── */
+section { padding: 5.5rem 0; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+
+.section-label {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--green); margin-bottom: 0.6rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.section-label::after {
+  content: ''; flex: 1; max-width: 40px; height: 2px; background: var(--green);
+}
+.section-title {
+  font-family: 'Playfair Display', serif; font-weight: 900;
+  font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.1;
+  color: var(--dark); margin-bottom: 3rem;
+}
+.section-title em { font-style: italic; color: var(--green); }
+
+/* ── ABOUT ── */
+#about { background: var(--white); border-top: 1px solid var(--border); }
+.about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: start; }
+.about-text p { font-size: 1.02rem; line-height: 1.9; color: var(--warm-gray); margin-bottom: 1.2rem; }
+.about-text p strong { color: var(--dark); font-weight: 600; }
+
+.identity-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+.tag {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 0.4rem 0.9rem; border: 2px solid;
+}
+.tag-green  { border-color: var(--green);  color: var(--green); }
+.tag-orange { border-color: var(--orange); color: var(--orange); }
+.tag-slate  { border-color: var(--slate);  color: var(--slate); }
+
+.about-sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.info-block {
+  padding: 1.5rem; background: var(--cream);
+  border-left: 4px solid var(--green);
+}
+.info-block.orange-border { border-left-color: var(--orange); }
+.info-block.slate-border  { border-left-color: var(--slate); }
+
+.info-block h4 {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--green); margin-bottom: 0.6rem;
+}
+.info-block.orange-border h4 { color: var(--orange); }
+.info-block.slate-border  h4 { color: var(--slate); }
+.info-block p { font-size: 0.92rem; color: var(--dark); line-height: 1.65; }
+
+.award-block { margin-top: 0.25rem; }
+.award-item {
+  padding: 0.6rem 0; border-bottom: 1px solid var(--border);
+  font-size: 0.88rem; color: var(--dark); line-height: 1.5;
+}
+.award-item:last-child { border-bottom: none; }
+.award-name {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--orange); display: block; margin-bottom: 0.15rem;
+}
+
+/* ── EXPERIENCE ── */
+#experience { background: var(--cream); }
+.exp-grid { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.exp-card {
+  background: var(--white); padding: 2rem 2.5rem;
+  border-left: 5px solid var(--green);
+  display: grid; grid-template-columns: 210px 1fr;
+  gap: 2rem; align-items: start;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.exp-card:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(0,0,0,0.09); }
+.exp-card.orange-left { border-left-color: var(--orange); }
+.exp-card.slate-left  { border-left-color: var(--slate); }
+
+.exp-card-label {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--green); margin-bottom: 0.4rem;
+}
+.exp-card.orange-left .exp-card-label { color: var(--orange); }
+.exp-card.slate-left  .exp-card-label { color: var(--slate); }
+
+.exp-card h3 {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: 1.1rem; color: var(--dark); margin-bottom: 0.3rem; line-height: 1.3;
+}
+.exp-card .org {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem;
+  font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--green); margin-bottom: 0.3rem;
+}
+.exp-card.orange-left .org { color: var(--orange); }
+.exp-card.slate-left  .org { color: var(--slate); }
+.exp-card .period { font-size: 0.78rem; color: var(--warm-gray); }
+
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.exp-bullets li {
+  font-size: 0.9rem; color: var(--warm-gray);
+  padding-left: 1.2rem; position: relative; line-height: 1.65;
+}
+.exp-bullets li::before {
+  content: '→'; position: absolute; left: 0;
+  color: var(--green); font-size: 0.75rem; top: 2px;
+}
+.exp-card.orange-left .exp-bullets li::before { color: var(--orange); }
+.exp-card.slate-left  .exp-bullets li::before { color: var(--slate); }
+.exp-bullets li strong { color: var(--dark); font-weight: 600; }
+
+.highlight-stat {
+  display: inline-block; background: var(--green); color: var(--white);
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.75rem; letter-spacing: 1px; padding: 0.15rem 0.5rem; margin: 0 0.1rem;
+}
+.exp-card.orange-left .highlight-stat { background: var(--orange); }
+
+/* ── PROJECTS ── */
+#projects { background: var(--white); border-top: 1px solid var(--border); }
+.projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+
+.project-card {
+  background: var(--cream); padding: 2rem;
+  border-top: 4px solid var(--green);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.project-card:nth-child(even) { border-top-color: var(--orange); }
+.project-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+
+.project-tag {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--green); margin-bottom: 0.75rem;
+}
+.project-card:nth-child(even) .project-tag { color: var(--orange); }
+.project-card h3 {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: 1.05rem; color: var(--dark); margin-bottom: 0.75rem; line-height: 1.3;
+}
+.project-card p { font-size: 0.88rem; color: var(--warm-gray); line-height: 1.7; }
+
+.project-link {
+  display: inline-block; margin-top: 1rem;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--green); text-decoration: none; border-bottom: 2px solid var(--green);
+  padding-bottom: 1px; transition: color 0.2s, border-color 0.2s;
+}
+.project-card:nth-child(even) .project-link { color: var(--orange); border-color: var(--orange); }
+.project-link:hover { opacity: 0.75; }
+
+.project-link-pending {
+  opacity: 0.35; pointer-events: none; cursor: default;
+  border-bottom-style: dashed;
+}
+
+/* ── CREATIVE WORK ── */
+#creative { background: var(--cream); border-top: 1px solid var(--border); }
+
+.creative-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+
+.creative-card {
+  background: var(--white); padding: 0;
+  border-top: 4px solid var(--green);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.creative-card:nth-child(even) { border-top-color: var(--orange); }
+.creative-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.09); }
+
+/* Thumbnail / media placeholder */
+.creative-thumb {
+  width: 100%; aspect-ratio: 16/9;
+  background: var(--cream);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden; position: relative;
+}
+.creative-thumb img,
+.creative-thumb video,
+.creative-thumb iframe {
+  width: 100%; height: 100%; object-fit: cover;
+  position: absolute; top: 0; left: 0;
+}
+.creative-thumb-label {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--warm-gray); text-align: center; padding: 0 1rem;
+}
+.creative-thumb-icon {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--border);
+  display: flex; align-items: center; justify-content: center;
+}
+.creative-thumb-icon svg { width: 22px; height: 22px; fill: var(--warm-gray); }
+
+.creative-body { padding: 1.5rem 1.75rem; }
+
+.creative-tag {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--green); margin-bottom: 0.5rem;
+}
+.creative-card:nth-child(even) .creative-tag { color: var(--orange); }
+
+.creative-card h3 {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: 1.05rem; color: var(--dark); margin-bottom: 0.6rem; line-height: 1.3;
+}
+.creative-card p {
+  font-size: 0.88rem; color: var(--warm-gray); line-height: 1.7; margin-bottom: 1rem;
+}
+
+/* Engagement metrics bar */
+.metrics-bar {
+  display: flex; gap: 1.25rem; flex-wrap: wrap;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
+}
+.metric {
+  display: flex; flex-direction: column; gap: 0.1rem;
+}
+.metric-value {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: 1.1rem; color: var(--dark); line-height: 1;
+}
+.metric-label {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.62rem; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--warm-gray);
+}
+
+.metrics-note {
+  font-size: 0.72rem; color: var(--warm-gray);
+  font-style: italic; margin-top: 0.5rem;
+}
+
+.creative-link {
+  display: inline-block; margin-top: 1rem;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--green); text-decoration: none;
+  border-bottom: 2px solid var(--green); padding-bottom: 1px;
+  transition: opacity 0.2s;
+}
+.creative-card:nth-child(even) .creative-link { color: var(--orange); border-color: var(--orange); }
+.creative-link:hover { opacity: 0.7; }
+
+/* ── SKILLS ── */
+#skills { background: var(--cream); }
+.skills-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; }
+.skills-intro p { font-size: 1rem; line-height: 1.85; color: var(--warm-gray); margin-bottom: 1rem; }
+
+.cert-heading {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--orange); margin: 1.5rem 0 0.75rem;
+}
+.cert-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.cert-item { display: flex; align-items: center; gap: 0.65rem; font-size: 0.88rem; color: var(--dark); }
+.cert-dot { width: 9px; height: 9px; background: var(--orange); border-radius: 50%; flex-shrink: 0; }
+
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 2.5rem; }
+.skill-group h4 {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--warm-gray); margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem; border-bottom: 2px solid var(--border);
+}
+.skill-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0; font-size: 0.88rem; color: var(--dark); }
+.skill-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+.skill-dot.orange { background: var(--orange); }
+.skill-dot.slate  { background: var(--slate); }
+
+/* ── CONTACT ── */
+#contact { background: var(--green); padding: 5.5rem 0; text-align: center; }
+#contact .section-label { color: rgba(255,255,255,0.65); justify-content: center; }
+#contact .section-label::after { background: rgba(255,255,255,0.4); }
+#contact .section-title { color: var(--white); margin-bottom: 1rem; }
+#contact .section-title em { color: rgba(255,255,255,0.7); }
+
+.contact-sub {
+  font-size: 1.05rem; color: rgba(255,255,255,0.82);
+  margin: 0 auto 3rem; max-width: 480px; line-height: 1.75;
+}
+
+.contact-links { display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
+.contact-link {
+  background: var(--white); color: var(--green); padding: 0.85rem 2rem;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase;
+  text-decoration: none; display: inline-block;
+  transition: background 0.2s, transform 0.2s;
+}
+.contact-link:hover { background: var(--cream); transform: translateY(-2px); }
+.contact-link.outline {
+  background: transparent; color: var(--white);
+  border: 2px solid rgba(255,255,255,0.5);
+}
+.contact-link.outline:hover { border-color: var(--white); background: rgba(255,255,255,0.12); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark); padding: 1.75rem 3rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+footer p { font-size: 0.78rem; color: #555; }
+.footer-flag { display: flex; height: 4px; width: 54px; }
+.footer-flag span:nth-child(1) { background: var(--green); flex: 1; }
+.footer-flag span:nth-child(2) { background: #555; flex: 1; }
+.footer-flag span:nth-child(3) { background: var(--orange); flex: 1; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-left > * { animation: fadeUp 0.65s ease forwards; opacity: 0; }
+.hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-left > *:nth-child(2) { animation-delay: 0.2s; }
+.hero-left > *:nth-child(3) { animation-delay: 0.3s; }
+.hero-left > *:nth-child(4) { animation-delay: 0.4s; }
+.hero-left > *:nth-child(5) { animation-delay: 0.5s; }
+.hero-right { animation: fadeUp 0.65s ease forwards; animation-delay: 0.3s; opacity: 0; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; justify-items: center; }
+  .hero::before { display: none; }
+  .hero-left { padding: 4rem 2rem 2rem; }
+  .hero-right { padding: 2rem 2rem 4rem; background: var(--cream); width: 100%; }
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .skills-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .exp-card { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1rem; }
+  .container { padding: 0 1.5rem; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; }
+}
+@media (max-width: 600px) {
+  .skills-grid { grid-template-columns: 1fr; }
+  .headshot-wrap { width: 220px; height: 270px; }
+  .flag-strip { width: 220px; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+
+  <nav>
+    <a href="#" class="nav-logo">Sergio <span>Garcia</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#creative">Creations</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-tag">Media Analytics · Public Relations · UT Austin 2027</p>
+      <h1 class="hero-name">
+        Sergio
+        <span class="last">Garcia.</span>
+      </h1>
+      <p class="hero-title">PR Strategist &nbsp;·&nbsp; Media Analyst &nbsp;·&nbsp; Creative Director</p>
+      <p class="hero-bio">
+        First-generation Hispanic professional making data <strong>speak to people</strong>, not just analysts.
+        I bring <strong>creative storytelling</strong> and <strong>strategic insight</strong>
+        to every project, backed by years in sales leadership, bilingual communication and a passion for
+        ethical, future-forward media.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-secondary">Get In Touch</a>
+      </div>
+    </div>
+
+```
+<div class="hero-right">
+  <!--
+    HEADSHOT INSTRUCTIONS:
+    1. Name your photo file exactly: headshot.jpg
+    2. Upload it to your GitHub repo alongside index.html
+    3. Your photo will appear here automatically
+  -->
+  <div class="headshot-wrap">
+    <img
+      src="headshot.jpg"
+      alt="Sergio Garcia"
+      class="headshot-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+    />
+    <div class="headshot-fallback">
+      <div class="hf-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+        </svg>
+      </div>
+      <span>Upload headshot.jpg<br>to GitHub</span>
+    </div>
+  </div>
+  <div class="flag-strip"><span></span><span></span><span></span></div>
+</div>
+```
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section id="about">
+    <div class="container">
+      <p class="section-label">Who I Am</p>
+      <h2 class="section-title">Built different.<br><em>A perspective.</em></h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I'm a <strong>Public Relations student with a Business minor</strong> at the University of Texas at Austin,
+            selected for the prestigious <strong>Texas Media &amp; Analytics Spring 2026 Cohort</strong> at
+            Moody College of Communication, and currently on the Dean's List.
+          </p>
+          <p>
+            My career in sales started right out of high school. From AT&amp;T to T-Mobile to Buckle,
+            I've led teams, exceeded revenue targets and built lasting client relationships. That foundation
+            shapes everything I do in PR: <strong>empathy, clarity and decisions backed by data</strong>.
+          </p>
+          <p>
+            On campus, I lead visual and social media strategy for two organizations and mentor underclassmen.
+            I've also had the opportunity to support <strong>Giant Noise at SXSW</strong>. I'm passionate about
+            making complex ideas feel human, especially for audiences that don't always see themselves
+            represented in the room.
+          </p>
+          <div class="identity-tags">
+            <span class="tag tag-green">Hispanic</span>
+            <span class="tag tag-green">First-Generation</span>
+            <span class="tag tag-orange">Bilingual</span>
+            <span class="tag tag-slate">UT Austin 2027</span>
+            <span class="tag tag-slate">Media Analytics Cohort</span>
+            <span class="tag tag-orange">From Dallas, Texas</span>
+          </div>
+        </div>
+        <div class="about-sidebar">
+          <div class="info-block">
+            <h4>Education</h4>
+            <p>
+              <strong>University of Texas at Austin</strong><br>
+              B.S. Public Relations, Business Minor<br>
+              Moody College of Communication<br>
+              Texas Media &amp; Analytics Cohort, Spring 2026<br>
+              Expected Graduation: May 2027
+            </p>
+          </div>
+          <div class="info-block orange-border">
+            <h4>Awards &amp; Honors</h4>
+            <div class="award-block">
+              <div class="award-item">
+                <span class="award-name">Dean's List, Fall 2024</span>
+                Moody College of Communication, UT Austin
+              </div>
+              <div class="award-item">
+                <span class="award-name">SPARK! Award</span>
+                Impact on Youth Creativity; Dallas, Texas
+              </div>
+              <div class="award-item">
+                <span class="award-name">Dallas Bar Foundation Award</span>
+                Texas High School Mock Trial Competition
+              </div>
+            </div>
+          </div>
+          <div class="info-block slate-border">
+            <h4>Languages</h4>
+            <p>Spanish<br>English</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+
+  <section id="experience">
+    <div class="container">
+      <p class="section-label">What I've Done</p>
+      <h2 class="section-title">Experience that<br><em>goes beyond the classroom.</em></h2>
+      <div class="exp-grid">
+
+```
+    <div class="exp-card">
+      <div class="exp-meta">
+        <p class="exp-card-label">Current Role</p>
+        <h3>Leader in Training</h3>
+        <p class="org">Buckle Inc.</p>
+        <p class="period">Aug. 2025-Present · Austin, Texas</p>
+      </div>
+      <ul class="exp-bullets">
+        <li>Direct a team of 4-7 associates during 3-hour sales segments, consistently meeting or exceeding shift revenue objectives</li>
+        <li>Style guests and recommend personalized wardrobe solutions to enhance customer experience and drive sales conversion</li>
+      </ul>
+    </div>
+
+    <div class="exp-card orange-left">
+      <div class="exp-meta">
+        <p class="exp-card-label">Internship · Retail Strategy</p>
+        <h3>Business Management &amp; Sales Intern</h3>
+        <p class="org">Buckle Inc.</p>
+        <p class="period">May-Aug. 2025 · Austin, Texas</p>
+      </div>
+      <ul class="exp-bullets">
+        <li>Designed a 30-day strategic business plan focused on Buckle Black brand visibility and sales growth</li>
+        <li>Led a store-wide initiative integrating brand education, visual merchandising and guest interaction</li>
+        <li>Increased national sales ranking from <span class="highlight-stat">91st to 43rd</span> and sellable units from <span class="highlight-stat">172 to 248</span> in 30 days</li>
+      </ul>
+    </div>
+
+    <div class="exp-card slate-left">
+      <div class="exp-meta">
+        <p class="exp-card-label">Retail Management · Telecom</p>
+        <h3>Retail Associate Manager</h3>
+        <p class="org">T-Mobile</p>
+        <p class="period">Sept. 2023-May 2025 · Austin, Texas</p>
+      </div>
+      <ul class="exp-bullets">
+        <li>Collaborated with store manager to coach a team of four employees, improving performance and company culture</li>
+        <li>Ensured team expertise across all wireless products, contributing to a monthly gross profit goal of $15,000</li>
+        <li>Managed daily operations: visual merchandising, sales reporting and inventory management</li>
+      </ul>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-meta">
+        <p class="exp-card-label">Sales · Telecom</p>
+        <h3>Retail Sales Consultant</h3>
+        <p class="org">AT&amp;T</p>
+        <p class="period">July 2020-Aug. 2022 · Dallas, Texas</p>
+      </div>
+      <ul class="exp-bullets">
+        <li><strong>Top sales representative for broadband activations</strong> for six consecutive months</li>
+        <li>Analyzed customer needs to recommend right-fit products and services; earned 20-plus five-star Google reviews</li>
+      </ul>
+    </div>
+
+    <div class="exp-card orange-left">
+      <div class="exp-meta">
+        <p class="exp-card-label">Campus Leadership · Social Media</p>
+        <h3>Social Media Director</h3>
+        <p class="org">Hispanic PR Student Association</p>
+        <p class="period">May 2025-Present · Austin, Texas</p>
+      </div>
+      <ul class="exp-bullets">
+        <li>Produced 25 posts consisting of 18 photos, five carousels and one reel, plus story post animations for each event flyer, to promote chapter events and drive member engagement</li>
+        <li>Organized two free professional headshot sessions with a turnout of 15 participants</li>
+        <li>Mentor underclassmen through events and leadership, supporting their professional development</li>
+      </ul>
+    </div>
+
+    <div class="exp-card slate-left">
+      <div class="exp-meta">
+        <p class="exp-card-label">Campus Leadership · Creative</p>
+        <h3>Creative Director</h3>
+        <p class="org">Diversity in Advertising &amp; Public Relations</p>
+        <p class="period">May 2025-Present · Austin, Texas</p>
+      </div>
+      <ul class="exp-bullets">
+        <li>Designed a 10-page internship spotlight carousel and 12 flyers for meetings, events and socials</li>
+        <li>Co-developed branded content for guest speakers alongside a co-creative director</li>
+        <li>Maintained cohesive visual brand identity across all organizational communications</li>
+      </ul>
+    </div>
+
+    <div class="exp-card" style="grid-column:1/-1">
+      <div class="exp-meta">
+        <p class="exp-card-label">SXSW Volunteer · PR Agency</p>
+        <h3>SXSW Event Volunteer</h3>
+        <p class="org">Giant Noise</p>
+        <p class="period">March 2025 · Austin, Texas</p>
+      </div>
+      <ul class="exp-bullets">
+        <li>Supported event operations for Hook 'Em House at SXSW; managed wristband distribution and attendee access compliance</li>
+        <li>Gained direct exposure to professional PR agency event execution at one of the world's largest creative festivals</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- PROJECTS -->
+
+  <section id="projects">
+    <div class="container">
+      <p class="section-label">Academic Work</p>
+      <h2 class="section-title">Projects built on<br><em>strategy &amp; research.</em></h2>
+      <div class="projects-grid">
+
+```
+    <div class="project-card">
+      <p class="project-tag">Marketing · Consumer Research</p>
+      <h3>Simply Gum — Gen Z SWOT Analysis</h3>
+      <p>Comprehensive SWOT analysis examining Simply Gum's market positioning for Gen Z consumers; identified strategic opportunities in the natural products space and evaluated competitive threats.</p>
+      <!-- TO ACTIVATE: Upload simply-gum-swot.pdf to GitHub, then remove the comment tags below -->
+      <!-- <a href="simply-gum-swot.pdf" target="_blank" class="project-link">View Project ↗</a> -->
+      <a href="simply-gum-swot.pdf" target="_blank" class="project-link project-link-pending">View Project ↗</a>
+    </div>
+
+    <div class="project-card">
+      <p class="project-tag">Integrated Campaign · Media Planning</p>
+      <h3>Amy's Ice Cream — Full Campaign Deck</h3>
+      <p>Complete integrated campaign including media planning, primary research, SWOT, competitive analysis, audience personas, segmentation, budget allocation and a full communication plan.</p>
+      <!-- TO ACTIVATE: Upload amys-icecream-campaign.pdf to GitHub, then remove the comment tags below -->
+      <!-- <a href="amys-icecream-campaign.pdf" target="_blank" class="project-link">View Project ↗</a> -->
+      <a href="amys-icecream-campaign.pdf" target="_blank" class="project-link project-link-pending">View Project ↗</a>
+    </div>
+
+    <div class="project-card">
+      <p class="project-tag">Public Relations · Crisis Communications</p>
+      <h3>ERCOT PR Suite</h3>
+      <p>Comprehensive PR package for one of Texas's most scrutinized public utilities; included a professional media kit, news release and a detailed event plan navigating high-stakes public perception.</p>
+      <a href="https://drive.google.com/drive/folders/1kj0yprct8FaT6BVA1FUhMDhQ0PuwVAym" target="_blank" class="project-link">View Project ↗</a>
+    </div>
+
+    <div class="project-card">
+      <p class="project-tag">Journalism · AP Style Writing</p>
+      <h3>AP Stylebook Writing Portfolio</h3>
+      <p>Publication-ready journalism including a news story and a feature story; both written, edited and formatted to full AP Stylebook standards for professional publication.</p>
+      <!-- TO ACTIVATE: Upload ap-writing-portfolio.pdf to GitHub, then remove the comment tags below -->
+      <!-- <a href="ap-writing-portfolio.pdf" target="_blank" class="project-link">View Project ↗</a> -->
+      <a href="ap-writing-portfolio.pdf" target="_blank" class="project-link project-link-pending">View Project ↗</a>
+    </div>
+
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- CREATIVE WORK -->
+
+  <!-- CREATIONS -->
+
+  <section id="creative">
+    <div class="container">
+      <p class="section-label">Creations</p>
+      <h2 class="section-title">Designed to engage.<br><em>Built to perform.</em></h2>
+      <div class="creative-grid">
+
+```
+    <!-- Card 1: HPRSA Graphic Design -->
+    <div class="creative-card">
+      <div class="creative-thumb">
+        <!--
+          TO ADD IMAGE: Remove the placeholder below and uncomment:
+          <img src="hprsa-flyer.jpg" alt="HPRSA Event Flyers" />
+        -->
+        <div class="creative-thumb-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+        </div>
+        <p class="creative-thumb-label">Upload hprsa-flyer.jpg to display</p>
+      </div>
+      <div class="creative-body">
+        <p class="creative-tag">HPRSA · Graphic Design</p>
+        <h3>Event Flyers &amp; Promotions</h3>
+        <p>25 posts consisting of 18 photos, five carousels and one reel — plus story post animations for each event flyer — promoting chapter meetings, socials and professional development events across Instagram.</p>
+        <div class="metrics-bar">
+          <div class="metric"><span class="metric-value">730</span><span class="metric-label">Likes</span></div>
+          <div class="metric"><span class="metric-value">121</span><span class="metric-label">Comments</span></div>
+          <div class="metric"><span class="metric-value">47,922</span><span class="metric-label">Reach</span></div>
+        </div>
+        <p class="metrics-note">Combined since May 2025</p>
+        <!-- <a href="https://www.instagram.com/p/YOUR-POST-ID/" target="_blank" class="creative-link">View on Instagram</a> -->
+      </div>
+    </div>
+
+    <!-- Card 2: HPRSA Short-Form Video -->
+    <div class="creative-card">
+      <div class="creative-thumb">
+        <!--
+          TO ADD VIDEO: Remove the placeholder below and uncomment:
+          <video src="hprsa-reel.mp4" controls poster="hprsa-reel-thumb.jpg"></video>
+        -->
+        <div class="creative-thumb-icon">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <p class="creative-thumb-label">Upload hprsa-reel.mp4 or add Instagram link to display</p>
+      </div>
+      <div class="creative-body">
+        <p class="creative-tag">HPRSA · Short-Form Video</p>
+        <h3>Chapter Reel</h3>
+        <p>Produced and edited a 60-plus second reel featuring chapter highlights, member spotlights and event coverage with music, captions and motion overlays.</p>
+        <div class="metrics-bar">
+          <div class="metric"><span class="metric-value">76</span><span class="metric-label">Likes</span></div>
+          <div class="metric"><span class="metric-value">13</span><span class="metric-label">Comments</span></div>
+          <div class="metric"><span class="metric-value">1,796</span><span class="metric-label">Reach</span></div>
+        </div>
+        <!-- <a href="https://www.instagram.com/reel/YOUR-REEL-ID/" target="_blank" class="creative-link">Watch Reel</a> -->
+      </div>
+    </div>
+
+    <!-- Card 3: DAPR Carousel -->
+    <div class="creative-card">
+      <div class="creative-thumb">
+        <!--
+          TO ADD IMAGE: Remove the placeholder below and uncomment:
+          <img src="dapr-carousel-thumb.jpg" alt="DA&PR Internship Spotlight Carousel" />
+        -->
+        <div class="creative-thumb-icon">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H7v-2h5v2zm5-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        </div>
+        <p class="creative-thumb-label">Upload dapr-carousel-thumb.jpg to display</p>
+      </div>
+      <div class="creative-body">
+        <p class="creative-tag">DA&amp;PR · Carousel Design</p>
+        <h3>Internship Spotlight Carousel</h3>
+        <p>Designed a 10-page Instagram carousel spotlighting member internship experiences; combined branded typography, layout design and editorial storytelling.</p>
+        <div class="metrics-bar">
+          <div class="metric"><span class="metric-value">99</span><span class="metric-label">Likes</span></div>
+          <div class="metric"><span class="metric-value">8</span><span class="metric-label">Comments</span></div>
+        </div>
+        <p class="metrics-note">Views / reach to be added</p>
+        <!-- <a href="https://www.instagram.com/p/YOUR-POST-ID/" target="_blank" class="creative-link">View on Instagram</a> -->
+      </div>
+    </div>
+
+    <!-- Card 4: DAPR Graphic Design -->
+    <div class="creative-card">
+      <div class="creative-thumb">
+        <!--
+          TO ADD IMAGE: Remove the placeholder below and uncomment:
+          <img src="dapr-flyer-thumb.jpg" alt="DA&PR Event Flyers" />
+        -->
+        <div class="creative-thumb-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+        </div>
+        <p class="creative-thumb-label">Upload dapr-flyer-thumb.jpg to display</p>
+      </div>
+      <div class="creative-body">
+        <p class="creative-tag">DA&amp;PR · Graphic Design</p>
+        <h3>Meeting &amp; Event Flyers</h3>
+        <p>Created 12 branded flyers for meetings, guest speaker events and socials; maintained cohesive visual identity across all organizational communications.</p>
+      </div>
+    </div>
+
+    <!-- Card 5: HPRSA Photography — full width -->
+    <div class="creative-card" style="grid-column: 1 / -1;">
+      <div class="creative-thumb" style="aspect-ratio: 21/9;">
+        <!--
+          TO ADD IMAGE: Remove the placeholder below and uncomment:
+          <img src="hprsa-headshots-thumb.jpg" alt="HPRSA Headshot Session" />
+        -->
+        <div class="creative-thumb-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        </div>
+        <p class="creative-thumb-label">Upload hprsa-headshots-thumb.jpg to display</p>
+      </div>
+      <div class="creative-body">
+        <p class="creative-tag">HPRSA · Photography</p>
+        <h3>Professional Headshot Sessions</h3>
+        <p>Organized and directed two free headshot sessions for HPRSA members, achieving a combined turnout of 15 participants; handled setup, direction and post-session distribution.</p>
+        <div class="metrics-bar">
+          <div class="metric"><span class="metric-value">15</span><span class="metric-label">Participants</span></div>
+          <div class="metric"><span class="metric-value">2</span><span class="metric-label">Sessions Held</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div style="text-align:center; margin-top:3rem;">
+    <a href="gallery.html" class="btn-primary" style="display:inline-block;">View All Creations ↗</a>
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- SKILLS -->
+
+  <section id="skills">
+    <div class="container">
+      <p class="section-label">What I Bring</p>
+      <h2 class="section-title">Skills sharpened by<br><em>real experience.</em></h2>
+      <div class="skills-layout">
+        <div class="skills-intro">
+          <p>
+            My skill set lives at the intersection of creativity and analytics. I design campaigns
+            that look great and perform; compelling visuals mean nothing without strategic data to back them up.
+          </p>
+          <p class="cert-heading">Certifications — In Progress</p>
+          <div class="cert-list">
+            <div class="cert-item"><span class="cert-dot"></span> Google AdWords</div>
+            <div class="cert-item"><span class="cert-dot"></span> Google Analytics</div>
+            <div class="cert-item"><span class="cert-dot"></span> Google Trend Data</div>
+            <div class="cert-item"><span class="cert-dot"></span> Stukent Digital Marketing Simternship</div>
+          </div>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h4>Design &amp; Creative</h4>
+            <div class="skill-item"><span class="skill-dot"></span> Affinity Photo</div>
+            <div class="skill-item"><span class="skill-dot"></span> Adobe Creative Suite</div>
+            <div class="skill-item"><span class="skill-dot"></span> Canva</div>
+            <div class="skill-item"><span class="skill-dot"></span> iMovie</div>
+            <div class="skill-item"><span class="skill-dot"></span> Animation &amp; Motion Graphics</div>
+            <div class="skill-item"><span class="skill-dot"></span> Photography &amp; Art Direction</div>
+          </div>
+          <div class="skill-group">
+            <h4>Analytics &amp; Data</h4>
+            <div class="skill-item"><span class="skill-dot orange"></span> Tableau</div>
+            <div class="skill-item"><span class="skill-dot orange"></span> MS Excel (Pivot Tables, V/X/H Lookup)</div>
+            <div class="skill-item"><span class="skill-dot orange"></span> Google Analytics</div>
+            <div class="skill-item"><span class="skill-dot orange"></span> Google AdWords</div>
+            <div class="skill-item"><span class="skill-dot orange"></span> Google Trend Data</div>
+          </div>
+          <div class="skill-group">
+            <h4>Social Media &amp; Content</h4>
+            <div class="skill-item"><span class="skill-dot slate"></span> Instagram &amp; Reels</div>
+            <div class="skill-item"><span class="skill-dot slate"></span> TikTok</div>
+            <div class="skill-item"><span class="skill-dot slate"></span> X (Twitter)</div>
+            <div class="skill-item"><span class="skill-dot slate"></span> Snapchat</div>
+            <div class="skill-item"><span class="skill-dot slate"></span> Short-Form Video Production</div>
+          </div>
+          <div class="skill-group">
+            <h4>PR &amp; Communication</h4>
+            <div class="skill-item"><span class="skill-dot"></span> AP Style Writing</div>
+            <div class="skill-item"><span class="skill-dot"></span> News &amp; Feature Writing</div>
+            <div class="skill-item"><span class="skill-dot"></span> Media Kit Development</div>
+            <div class="skill-item"><span class="skill-dot"></span> Campaign Strategy &amp; Planning</div>
+            <div class="skill-item"><span class="skill-dot"></span> Microsoft 365 &amp; Google Workspace</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+
+  <section id="contact">
+    <div class="container">
+      <p class="section-label">Let's Connect</p>
+      <h2 class="section-title" style="color:var(--white); margin-bottom:1rem;">Ready to work<br><em>with purpose.</em></h2>
+      <p class="contact-sub">
+        Whether you're a recruiter, a brand or a fellow creative, I'd love to connect.
+      </p>
+      <div class="contact-links">
+        <a href="/cdn-cgi/l/email-protection#88fbedfaefe1e7efe9faebe1e9c8fdfcedf0e9fba6edecfd" class="contact-link">Email Me</a>
+        <a href="https://www.linkedin.com/in/sergio-garcia-03930b337/" target="_blank" class="contact-link outline">LinkedIn</a>
+        <a href="https://github.com/sergiogarciatx" target="_blank" class="contact-link outline">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <p>&copy; 2026 Sergio Garcia · Austin, Texas · sergiogarciatx.github.io</p>
+    <div class="footer-flag"><span></span><span></span><sp
