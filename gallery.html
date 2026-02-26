@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creations — Sergio Garcia</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green:       #006847;
+      --green-dark:  #004d34;
+      --green-light: #E8F2ED;
+      --orange:      #BF5700;
+      --slate:       #3D5A6B;
+      --white:       #FAF8F4;
+      --cream:       #F3EDE2;
+      --dark:        #1C1C1C;
+      --warm-gray:   #6A6360;
+      --border:      #DED8CE;
+    }
+
+```
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Barlow', sans-serif;
+  background-color: var(--white);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.1rem 3rem;
+  background: rgba(250,248,244,0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 3px solid var(--green);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif; font-weight: 900;
+  font-size: 1.35rem; color: var(--dark); text-decoration: none;
+}
+.nav-logo span { color: var(--green); }
+.nav-back {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.82rem; letter-spacing: 1.8px; text-transform: uppercase;
+  color: var(--warm-gray); text-decoration: none;
+  display: flex; align-items: center; gap: 0.5rem;
+  transition: color 0.2s;
+}
+.nav-back::before { content: '←'; font-size: 1rem; }
+.nav-back:hover { color: var(--green); }
+
+/* ── PAGE HEADER ── */
+.page-header {
+  min-height: 42vh;
+  padding-top: 80px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.page-header::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 55%; height: 100%;
+  background: var(--cream);
+  clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+  z-index: 0;
+}
+.header-left {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 4rem 3.5rem 4rem 5rem;
+}
+.header-right {
+  position: relative; z-index: 1;
+}
+
+.section-label {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--green); margin-bottom: 0.6rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.section-label::after {
+  content: ''; width: 40px; height: 2px; background: var(--green);
+}
+.page-header h1 {
+  font-family: 'Playfair Display', serif; font-weight: 900;
+  font-size: clamp(2.8rem, 5vw, 4.5rem); line-height: 0.95;
+  color: var(--dark); margin-bottom: 1.25rem;
+}
+.page-header h1 em { font-style: italic; color: var(--green); display: block; }
+.page-header p {
+  font-size: 1rem; color: var(--warm-gray);
+  line-height: 1.85; max-width: 460px;
+}
+
+/* ── SHARED ── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+
+/* ── FILTER BAR ── */
+.filter-wrap {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 1.25rem 0;
+  position: sticky; top: 68px; z-index: 50;
+}
+.filter-bar { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.filter-btn {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+  padding: 0.5rem 1.6rem;
+  border: 2px solid var(--border);
+  background: transparent; color: var(--warm-gray);
+  cursor: pointer; transition: all 0.2s;
+}
+.filter-btn:hover { border-color: var(--green); color: var(--green); }
+.filter-btn.active { background: var(--green); border-color: var(--green); color: var(--white); }
+
+/* ── GALLERY BODY ── */
+.gallery-body { padding-bottom: 6rem; background: var(--white); }
+
+/* ── ORG SECTION ── */
+.org-section { padding: 5rem 0 0; }
+
+.org-heading {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 4px solid var(--green);
+}
+.org-heading.orange-head { border-bottom-color: var(--orange); }
+.org-heading .section-label { margin-bottom: 0.4rem; }
+.org-heading.orange-head .section-label { color: var(--orange); }
+.org-heading.orange-head .section-label::after { background: var(--orange); }
+
+.org-heading h2 {
+  font-family: 'Playfair Display', serif; font-weight: 900;
+  font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.05; color: var(--dark);
+  margin-bottom: 0.3rem;
+}
+.org-heading h2 em { font-style: italic; color: var(--green); }
+.org-heading.orange-head h2 em { color: var(--orange); }
+.org-role {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--warm-gray);
+}
+
+/* ── CARDS ── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.c-card {
+  background: var(--cream);
+  border-top: 4px solid var(--green);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.c-card.orange-top { border-top-color: var(--orange); }
+.c-card.full-w { grid-column: 1 / -1; }
+.c-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,0.09); }
+
+.c-thumb {
+  width: 100%; aspect-ratio: 16/9;
+  background: var(--white);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 0.6rem;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden; position: relative; cursor: pointer;
+}
+.c-card.full-w .c-thumb { aspect-ratio: 21/7; }
+.c-thumb img {
+  width: 100%; height: 100%; object-fit: cover;
+  position: absolute; inset: 0; transition: transform 0.3s;
+}
+.c-card:hover .c-thumb img { transform: scale(1.03); }
+
+.c-thumb-icon {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--border);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 1;
+}
+.c-thumb-icon svg { width: 24px; height: 24px; fill: var(--warm-gray); }
+.c-thumb-placeholder {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--warm-gray); text-align: center; padding: 0 1.5rem;
+  line-height: 1.65; position: relative; z-index: 1;
+}
+
+.c-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,104,71,0.88);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.25s; z-index: 2;
+}
+.c-card.orange-top .c-overlay { background: rgba(191,87,0,0.88); }
+.c-overlay-btn {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.8rem; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--white); border: 2px solid rgba(255,255,255,0.7);
+  padding: 0.65rem 1.6rem; text-decoration: none; cursor: pointer;
+  background: transparent;
+  transition: background 0.2s;
+}
+.c-overlay-btn:hover { background: rgba(255,255,255,0.15); }
+.c-card:hover .c-overlay { opacity: 1; }
+
+/* Pending state for links not yet activated */
+.c-overlay-btn.pending { opacity: 0.45; pointer-events: none; }
+
+.c-body { padding: 1.5rem 1.75rem 1.75rem; }
+.c-tag {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--green); margin-bottom: 0.5rem;
+}
+.c-card.orange-top .c-tag { color: var(--orange); }
+.c-body h3 {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: 1.05rem; color: var(--dark); margin-bottom: 0.6rem; line-height: 1.3;
+}
+.c-body p { font-size: 0.88rem; color: var(--warm-gray); line-height: 1.7; }
+
+.c-metrics {
+  display: flex; gap: 1.25rem; flex-wrap: wrap;
+  margin-top: 1rem; padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
+}
+.c-metric { display: flex; flex-direction: column; gap: 0.05rem; }
+.c-metric-val {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: 1.1rem; color: var(--dark); line-height: 1;
+}
+.c-metric-lbl {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.62rem; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--warm-gray);
+}
+.c-note {
+  font-size: 0.72rem; color: var(--warm-gray);
+  font-style: italic; margin-top: 0.5rem;
+}
+
+/* ── GRID PANEL (replaces lightbox) ── */
+.panel-overlay {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: rgba(243,237,226,0.97);
+  overflow-y: auto;
+}
+.panel-overlay.open { display: block; }
+
+.panel-inner {
+  max-width: 1100px; margin: 0 auto;
+  padding: 5rem 3rem 4rem;
+  position: relative;
+}
+
+.panel-close {
+  position: fixed; top: 1.25rem; right: 1.5rem;
+  width: 42px; height: 42px; z-index: 210;
+  background: var(--green); color: var(--white);
+  border: none; cursor: pointer; font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.panel-close:hover { background: var(--green-dark); }
+
+.panel-header { margin-bottom: 2.5rem; }
+.panel-header .section-label { margin-bottom: 0.4rem; }
+.panel-header h2 {
+  font-family: 'Playfair Display', serif; font-weight: 900;
+  font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--dark);
+  line-height: 1.05; margin-bottom: 0.5rem;
+}
+.panel-header h2 em { font-style: italic; color: var(--green); }
+.panel-header p { font-size: 0.92rem; color: var(--warm-gray); line-height: 1.75; max-width: 580px; }
+
+/* Image/animation grid inside panel */
+.panel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.panel-item {
+  background: var(--white);
+  border-top: 3px solid var(--green);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+.panel-item:nth-child(even) { border-top-color: var(--orange); }
+.panel-item:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(0,0,0,0.09); }
+
+.panel-item-media {
+  width: 100%; aspect-ratio: 4/5;
+  background: var(--cream);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 0.5rem;
+  overflow: hidden; position: relative;
+}
+/* Square ratio for story posts / animations */
+.panel-item.square .panel-item-media { aspect-ratio: 1/1; }
+/* Wide ratio for meeting recaps */
+.panel-item.wide .panel-item-media { aspect-ratio: 16/9; }
+
+.panel-item-media img {
+  width: 100%; height: 100%; object-fit: cover;
+  position: absolute; inset: 0;
+  transition: transform 0.3s;
+}
+.panel-item:hover .panel-item-media img { transform: scale(1.04); }
+
+/* Animated placeholder — cycles a gradient to simulate motion */
+.panel-item-media.anim-placeholder {
+  background: linear-gradient(135deg, var(--green-light), var(--cream), var(--orange-light, #FBF0E8), var(--cream));
+  background-size: 400% 400%;
+  animation: shimmerBG 3s ease infinite;
+}
+@keyframes shimmerBG {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.panel-item-icon {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(255,255,255,0.7);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 1;
+}
+.panel-item-icon svg { width: 20px; height: 20px; fill: var(--warm-gray); }
+
+.panel-item-placeholder {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--warm-gray); text-align: center; padding: 0 1rem;
+  line-height: 1.6; position: relative; z-index: 1;
+}
+
+/* Animation badge */
+.anim-badge {
+  position: absolute; top: 0.5rem; left: 0.5rem; z-index: 2;
+  background: var(--orange); color: var(--white);
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.58rem; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+}
+
+/* panel-item-label removed — no captions */
+
+/* Single-image zoom overlay within panel */
+.zoom-overlay {
+  display: none; position: fixed; inset: 0; z-index: 300;
+  background: rgba(243,237,226,0.97);
+  align-items: center; justify-content: center;
+  padding: 2rem;
+}
+.zoom-overlay.open { display: flex; }
+.zoom-img {
+  max-width: 700px; width: 100%; max-height: 85vh;
+  object-fit: contain; box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+}
+.zoom-close {
+  position: fixed; top: 1.25rem; right: 1.5rem;
+  width: 42px; height: 42px; z-index: 310;
+  background: var(--orange); color: var(--white);
+  border: none; cursor: pointer; font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.zoom-close:hover { background: var(--orange-dark, #994400); }
+
+@media (max-width: 900px) {
+  .panel-grid { grid-template-columns: repeat(2, 1fr); }
+  .panel-inner { padding: 5rem 1.5rem 3rem; }
+}
+@media (max-width: 500px) {
+  .panel-grid { grid-template-columns: 1fr; }
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--cream); padding: 1.75rem 3rem;
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 3px solid var(--green);
+}
+footer p { font-size: 0.78rem; color: var(--warm-gray); }
+.footer-flag { display: flex; height: 4px; width: 54px; }
+.footer-flag span:nth-child(1) { background: var(--green); flex: 1; }
+.footer-flag span:nth-child(2) { background: var(--border); flex: 1; }
+.footer-flag span:nth-child(3) { background: var(--orange); flex: 1; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .container { padding: 0 1.5rem; }
+  .page-header { grid-template-columns: 1fr; }
+  .page-header::before { display: none; }
+  .header-left { padding: 4rem 1.5rem 3rem; }
+  .cards-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+
+  <nav>
+    <a href="index.html" class="nav-logo">Sergio <span>Garcia</span></a>
+    <a href="index.html#creative" class="nav-back">Back to Portfolio</a>
+  </nav>
+
+  <!-- PAGE HEADER — mirrors hero style from main page -->
+
+  <div class="page-header">
+    <div class="header-left">
+      <p class="section-label">Full Gallery</p>
+      <h1>Every<br><em>Creation.</em></h1>
+      <p>
+        All creative work made during my time in college, including flyers, reels,
+        carousels and photo shoots — produced for HPRSA and DA&amp;PR since May 2025.
+      </p>
+    </div>
+    <div class="header-right"></div>
+  </div>
+
+  <!-- FILTER BAR -->
+
+  <div class="filter-wrap">
+    <div class="container">
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
+        <button class="filter-btn" onclick="filterGallery('hprsa', this)">HPRSA</button>
+        <button class="filter-btn" onclick="filterGallery('dapr', this)">DA&amp;PR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY BODY -->
+
+  <div class="gallery-body">
+    <div class="container">
+
+```
+  <!-- ── HPRSA ── -->
+  <div class="org-section" data-org="hprsa">
+    <div class="org-heading">
+      <p class="section-label">HPRSA</p>
+      <h2>Hispanic PR Student <em>Association.</em></h2>
+      <p class="org-role">Social Media Director &nbsp;·&nbsp; May 2025–Present</p>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- HPRSA Graphic Design -->
+      <div class="c-card" data-org="hprsa" onclick="openPanel('hprsa-graphic')">
+        <div class="c-thumb">
+          <!-- TO ADD: Remove placeholder below and uncomment: <img src="hprsa-flyer.jpg" alt="HPRSA Graphic Design" /> -->
+          <div class="c-overlay"><span class="c-overlay-btn">View All</span></div>
+          <div class="c-thumb-icon"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></div>
+          <p class="c-thumb-placeholder">Upload hprsa-flyer.jpg to display</p>
+        </div>
+        <div class="c-body">
+          <p class="c-tag">HPRSA · Graphic Design</p>
+          <h3>Event Flyers, Professional Development &amp; Meeting Recaps</h3>
+          <p>25 posts — 18 photos, five carousels and one reel — plus story post animations for each event flyer, promoting chapter meetings, socials and professional development events across Instagram.</p>
+          <div class="c-metrics">
+            <div class="c-metric"><span class="c-metric-val">730</span><span class="c-metric-lbl">Likes</span></div>
+            <div class="c-metric"><span class="c-metric-val">121</span><span class="c-metric-lbl">Comments</span></div>
+            <div class="c-metric"><span class="c-metric-val">47,922</span><span class="c-metric-lbl">Reach</span></div>
+          </div>
+          <p class="c-note">Combined totals since May 2025</p>
+        </div>
+      </div>
+
+      <!-- HPRSA Short-Form Video -->
+      <div class="c-card" data-org="hprsa">
+        <div class="c-thumb">
+          <!-- TO ADD: Remove placeholder below and uncomment: <img src="hprsa-reel-thumb.jpg" alt="Hispanic Heritage Month Reel" /> -->
+          <div class="c-overlay">
+            <!--
+              TO ACTIVATE: Replace # with your Instagram reel URL and remove the class "pending"
+            -->
+            <a href="https://www.instagram.com/reel/DPxFW-CjG4x/?igsh=MTRoZTR6NnAzZjYycQ==" target="_blank" class="c-overlay-btn" onclick="event.stopPropagation()">View Reel</a>
+          </div>
+          <div class="c-thumb-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <p class="c-thumb-placeholder">Upload hprsa-reel-thumb.jpg to display</p>
+        </div>
+        <div class="c-body">
+          <p class="c-tag">HPRSA · Short-Form Video</p>
+          <h3>Hispanic Heritage Month Reel</h3>
+          <p>Produced and edited a reel for Hispanic Heritage Month featuring chapter members, event highlights and event coverage with music, captions and motion overlays.</p>
+          <div class="c-metrics">
+            <div class="c-metric"><span class="c-metric-val">76</span><span class="c-metric-lbl">Likes</span></div>
+            <div class="c-metric"><span class="c-metric-val">13</span><span class="c-metric-lbl">Comments</span></div>
+            <div class="c-metric"><span class="c-metric-val">1,796</span><span class="c-metric-lbl">Reach</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HPRSA Photography — full width -->
+      <div class="c-card full-w" data-org="hprsa" onclick="openPanel('hprsa-photo')">
+        <div class="c-thumb">
+          <!-- TO ADD: Remove placeholder below and uncomment: <img src="hprsa-headshots-thumb.jpg" alt="HPRSA Headshot Sessions" /> -->
+          <div class="c-overlay"><span class="c-overlay-btn">View All</span></div>
+          <div class="c-thumb-icon"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+          <p class="c-thumb-placeholder">Upload hprsa-headshots-thumb.jpg to display</p>
+        </div>
+        <div class="c-body">
+          <p class="c-tag">HPRSA · Photography</p>
+          <h3>Professional Headshot Sessions</h3>
+          <p>Organized and directed two free headshot sessions for HPRSA members; handled setup, lighting direction and post-session file distribution.</p>
+          <div class="c-metrics">
+            <div class="c-metric"><span class="c-metric-val">15</span><span class="c-metric-lbl">Participants</span></div>
+            <div class="c-metric"><span class="c-metric-val">2</span><span class="c-metric-lbl">Sessions Held</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── DA&PR ── -->
+  <div class="org-section" data-org="dapr">
+    <div class="org-heading orange-head">
+      <p class="section-label">DA&amp;PR</p>
+      <h2>Diversity in Advertising <em>&amp; PR.</em></h2>
+      <p class="org-role">Creative Director &nbsp;·&nbsp; May 2025–Present</p>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- DAPR Carousel -->
+      <div class="c-card orange-top" data-org="dapr">
+        <div class="c-thumb">
+          <!-- TO ADD: Remove placeholder below and uncomment: <img src="dapr-carousel-thumb.jpg" alt="DA&PR Carousel" /> -->
+          <div class="c-overlay">
+            <!--
+              TO ACTIVATE: Replace # with your Instagram carousel URL and remove the class "pending"
+            -->
+            <a href="https://www.instagram.com/p/DNog6upgQ1m/?img_index=9&igsh=MXF2NmdteTR2Z3pyeg==" target="_blank" class="c-overlay-btn" onclick="event.stopPropagation()">View Carousel</a>
+          </div>
+          <div class="c-thumb-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H7v-2h5v2zm5-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
+          <p class="c-thumb-placeholder">Upload dapr-carousel-thumb.jpg to display</p>
+        </div>
+        <div class="c-body">
+          <p class="c-tag">DA&amp;PR · Carousel Design</p>
+          <h3>Internship Spotlight Carousel</h3>
+          <p>10-page Instagram carousel spotlighting member internship experiences; combined branded typography, layout design and editorial storytelling.</p>
+          <div class="c-metrics">
+            <div class="c-metric"><span class="c-metric-val">99</span><span class="c-metric-lbl">Likes</span></div>
+            <div class="c-metric"><span class="c-metric-val">8</span><span class="c-metric-lbl">Comments</span></div>
+          </div>
+          <p class="c-note">Views / reach to be added</p>
+        </div>
+      </div>
+
+      <!-- DAPR Graphic Design -->
+      <div class="c-card orange-top" data-org="dapr" onclick="openPanel('dapr-graphic')">
+        <div class="c-thumb">
+          <!-- TO ADD: Remove placeholder below and uncomment: <img src="dapr-flyer-thumb.jpg" alt="DA&PR Graphic Design" /> -->
+          <div class="c-overlay"><span class="c-overlay-btn">View All</span></div>
+          <div class="c-thumb-icon"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></div>
+          <p class="c-thumb-placeholder">Upload dapr-flyer-thumb.jpg to display</p>
+        </div>
+        <div class="c-body">
+          <p class="c-tag">DA&amp;PR · Graphic Design</p>
+          <h3>Event Flyers &amp; Animated Story Posts</h3>
+          <p>12 branded flyers for meetings, guest speaker events and socials, each paired with an animated story post version; maintained cohesive visual identity across all organizational communications.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+```
+
+  </div>
+
+  <!-- GRID PANEL — opens when "View All" is clicked -->
+
+  <div class="panel-overlay" id="panel">
+    <button class="panel-close" onclick="closePanel()">✕</button>
+    <div class="panel-inner">
+      <div class="panel-header">
+        <p class="section-label" id="panel-label">Gallery</p>
+        <h2 id="panel-title">Title</h2>
+        <p id="panel-desc"></p>
+      </div>
+      <div class="panel-grid" id="panel-grid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ZOOM — single image expand within panel -->
+
+  <div class="zoom-overlay" id="zoom" onclick="closeZoom(event)">
+    <button class="zoom-close" onclick="closeZoom()">✕</button>
+    <img class="zoom-img" id="zoom-img" src="" alt="" />
+  </div>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <p>&copy; 2026 Sergio Garcia &nbsp;·&nbsp; Austin, Texas &nbsp;·&nbsp; sergiogarciatx.github.io</p>
+    <div class="footer-flag"><span></span><span></span><span></span></div>
+  </footer>
+
+  <script>
+    // ── FILTER ──
+    function filterGallery(tag, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.org-section').forEach(section => {
+        section.style.display = (tag === 'all' || tag === section.dataset.org) ? '' : 'none';
+      });
+    }
+
+    // ── PANEL DATA ──
+    // Each entry: { src, label, ratio, animated }
+    // ratio: 'portrait' (4/5) | 'square' (1/1) | 'wide' (16/9)
+    // animated: true shows the shimmer animation badge and cycling gradient
+    // TO ADD IMAGES: Replace 'placeholder' src with your actual filename e.g. 'hprsa-flyer-1.jpg'
+    const PANELS = {
+      'hprsa-graphic': {
+        label: 'HPRSA · Graphic Design',
+        title: 'Event Flyers, Professional Development &amp; Meeting Recaps',
+        desc: '25 posts produced for HPRSA Instagram since May 2025 — 18 photos, five carousels and one reel. Story post animations for each event flyer not included in that count. Upload your files to GitHub to display them here.',
+        items: [
+          // Photos (18 total — show 9 here as representative examples)
+          { src: 'hprsa-photo-1.jpg',       ratio: 'portrait' },
+          { src: 'hprsa-photo-2.jpg',       ratio: 'portrait' },
+          { src: 'hprsa-photo-3.jpg',       ratio: 'portrait' },
+          { src: 'hprsa-photo-4.jpg',       ratio: 'portrait' },
+          { src: 'hprsa-photo-5.jpg',       ratio: 'portrait' },
+          { src: 'hprsa-photo-6.jpg',       ratio: 'portrait' },
+          { src: 'hprsa-photo-7.jpg',       ratio: 'portrait' },
+          { src: 'hprsa-photo-8.jpg',       ratio: 'portrait' },
+          { src: 'hprsa-photo-9.jpg',       ratio: 'portrait' },
+          // Carousels (5 total — show all 5 cover slides)
+          { src: 'hprsa-carousel-1.jpg',    ratio: 'portrait' },
+          { src: 'hprsa-carousel-2.jpg',    ratio: 'portrait' },
+          { src: 'hprsa-carousel-3.jpg',    ratio: 'portrait' },
+          { src: 'hprsa-carousel-4.jpg',    ratio: 'portrait' },
+          { src: 'hprsa-carousel-5.jpg',    ratio: 'portrait' },
+          // Story post animations (not counted in the 25)
+          { src: 'hprsa-story-anim-1.mp4',  ratio: 'square', animated: true },
+          { src: 'hprsa-story-anim-2.mp4',  ratio: 'square', animated: true },
+          { src: 'hprsa-story-anim-3.mp4',  ratio: 'square', animated: true },
+          { src: 'hprsa-story-anim-4.mp4',  ratio: 'square', animated: true },
+        ]
+      },
+      'hprsa-photo': {
+        label: 'HPRSA · Photography',
+        title: 'Professional Headshot Sessions',
+        desc: 'Photos from two free professional headshot sessions organized for HPRSA members. 15 participants across both sessions.',
+        items: [
+          { src: 'hprsa-headshot-1.jpg', ratio: 'portrait' },
+          { src: 'hprsa-headshot-2.jpg', ratio: 'portrait' },
+          { src: 'hprsa-headshot-3.jpg', ratio: 'portrait' },
+          { src: 'hprsa-headshot-4.jpg', ratio: 'portrait' },
+          { src: 'hprsa-headshot-5.jpg', ratio: 'portrait' },
+          { src: 'hprsa-headshot-6.jpg', ratio: 'portrait' },
+        ]
+      },
+      'dapr-graphic': {
+        label: 'DA&PR · Graphic Design',
+        title: 'Event Flyers &amp; Animated Story Posts',
+        desc: '12 branded flyers for meetings, guest speaker events and socials, each paired with an animated story post version.',
+        items: [
+          { src: 'dapr-flyer-1.jpg',       ratio: 'portrait' },
+          { src: 'dapr-flyer-2.jpg',       ratio: 'portrait' },
+          { src: 'dapr-flyer-3.jpg',       ratio: 'portrait' },
+          { src: 'dapr-flyer-4.jpg',       ratio: 'portrait' },
+          { src: 'dapr-flyer-5.jpg',       ratio: 'portrait' },
+          { src: 'dapr-flyer-6.jpg',       ratio: 'portrait' },
+          { src: 'dapr-story-anim-1.mp4',  ratio: 'square', animated: true },
+          { src: 'dapr-story-anim-2.mp4',  ratio: 'square', animated: true },
+          { src: 'dapr-story-anim-3.mp4',  ratio: 'square', animated: true },
+        ]
+      }
+    };
+
+    function openPanel(key) {
+      const data = PANELS[key];
+      if (!data) return;
+      document.getElementById('panel-label').innerHTML = data.label;
+      document.getElementById('panel-title').innerHTML = data.title;
+      document.getElementById('panel-desc').textContent = data.desc;
+
+      const grid = document.getElementById('panel-grid');
+      grid.innerHTML = '';
+
+      data.items.forEach(item => {
+        const isVideo = item.src.endsWith('.mp4');
+        const card = document.createElement('div');
+        card.className = 'panel-item' + (item.ratio === 'square' ? ' square' : item.ratio === 'wide' ? ' wide' : '');
+
+        const badge = item.animated ? '<span class="anim-badge">Animated</span>' : '';
+
+        if (isVideo) {
+          card.innerHTML = `
+            <div class="panel-item-media">
+              ${badge}
+              <video src="${item.src}" autoplay muted loop playsinline
+                style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"
+                onerror="this.parentElement.classList.add('anim-placeholder'); this.remove();">
+              </video>
+            </div>
+          `;
+          card.style.cursor = 'default';
+        } else {
+          const mediaClass = 'panel-item-media' + (item.animated ? ' anim-placeholder' : '');
+          card.innerHTML = `
+            <div class="${mediaClass}">
+              ${badge}
+              <div class="panel-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+              </div>
+              <p class="panel-item-placeholder">Upload ${item.src}</p>
+            </div>
+          `;
+          const img = new Image();
+          img.src = item.src;
+          img.onload = () => {
+            const media = card.querySelector('.panel-item-media');
+            media.classList.remove('anim-placeholder');
+            media.innerHTML = `${badge}<img src="${item.src}" alt="" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" />`;
+          };
+          card.addEventListener('click', () => openZoom(item.src));
+        }
+
+        grid.appendChild(card);
+      });
+
+      document.getElementById('panel').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePanel() {
+      document.getElementById('panel').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ── ZOOM ──
+    function openZoom(src) {
+      const img = document.getElementById('zoom-img');
+      img.src = src;
+      img.onerror = () => closeZoom();
+      document.getElementById('zoom').classList.add('open');
+    }
+
+    function closeZoom(e) {
+      if (!e || e.target === document.getElementById('zoom')) {
+        document.getElementById('zoom').classList.remove('open');
+        document.getElementById('zoom-img').src = '';
+      }
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        if (document.getElementById('zoom').classList.contains('open')) closeZoom();
+        else closePanel();
+      }
+    });
+  </script>
+
+</body>
+</html>
