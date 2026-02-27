@@ -121,6 +121,16 @@ nav {
 }
 .hero-bio strong { color: var(--dark); font-weight: 600; }
 
+.btn-resume {
+  background: transparent; color: var(--green); padding: 0.85rem 2.2rem;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase;
+  text-decoration: none; display: inline-block;
+  border: 2px solid var(--green);
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.btn-resume:hover { background: var(--green); color: var(--white); transform: translateY(-2px); }
+
 .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
 
 .btn-primary {
@@ -582,6 +592,7 @@ footer p { font-size: 0.78rem; color: #555; }
       <div class="hero-cta">
         <a href="#projects" class="btn-primary">View My Work</a>
         <a href="#contact" class="btn-secondary">Get In Touch</a>
+        <a href="resume.pdf" target="_blank" class="btn-resume">Download Résumé ↓</a>
       </div>
     </div>
 
