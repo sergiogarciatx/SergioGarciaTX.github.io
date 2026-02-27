@@ -656,10 +656,10 @@ footer p { font-size: 0.78rem; color: var(--warm-gray); }
           { src: 'hprsa-carousel-4.jpg',    ratio: 'portrait' },
           { src: 'hprsa-carousel-5.jpg',    ratio: 'portrait' },
           // Story post animations (not counted in the 25)
-          { src: 'hprsa-story-anim-1.mp4',  ratio: 'square', animated: true },
-          { src: 'hprsa-story-anim-2.mp4',  ratio: 'square', animated: true },
-          { src: 'hprsa-story-anim-3.mp4',  ratio: 'square', animated: true },
-          { src: 'hprsa-story-anim-4.mp4',  ratio: 'square', animated: true },
+          { src: 'hprsa-story-anim-1.gif',  ratio: 'square', animated: true },
+          { src: 'hprsa-story-anim-2.gif',  ratio: 'square', animated: true },
+          { src: 'hprsa-story-anim-3.gif',  ratio: 'square', animated: true },
+          { src: 'hprsa-story-anim-4.gif',  ratio: 'square', animated: true },
         ]
       },
       'hprsa-photo': {
@@ -686,9 +686,9 @@ footer p { font-size: 0.78rem; color: var(--warm-gray); }
           { src: 'dapr-flyer-4.jpg',       ratio: 'portrait' },
           { src: 'dapr-flyer-5.jpg',       ratio: 'portrait' },
           { src: 'dapr-flyer-6.jpg',       ratio: 'portrait' },
-          { src: 'dapr-story-anim-1.mp4',  ratio: 'square', animated: true },
-          { src: 'dapr-story-anim-2.mp4',  ratio: 'square', animated: true },
-          { src: 'dapr-story-anim-3.mp4',  ratio: 'square', animated: true },
+          { src: 'dapr-story-anim-1.gif',  ratio: 'square', animated: true },
+          { src: 'dapr-story-anim-2.gif',  ratio: 'square', animated: true },
+          { src: 'dapr-story-anim-3.gif',  ratio: 'square', animated: true },
         ]
       }
     };
@@ -704,7 +704,7 @@ footer p { font-size: 0.78rem; color: var(--warm-gray); }
       grid.innerHTML = '';
 
       data.items.forEach(item => {
-        const isVideo = item.src.endsWith('.mp4');
+        const isVideo = false; // gifs handled as images
         const card = document.createElement('div');
         card.className = 'panel-item' + (item.ratio === 'square' ? ' square' : item.ratio === 'wide' ? ' wide' : '');
 
