@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sergio Garcia — PR Strategist & Media Analyst</title>
+  <title>Sergio Garcia PR Strategist & Media Analyst</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700;1,9..144,900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
   <style>
@@ -553,12 +553,25 @@
        CONTACT
     ══════════════════════════════════════ */
     #contact {
-      text-align: center; padding: 5rem 0 6rem;
+      text-align: center; padding: 7rem 0 7rem;
+      position: relative; overflow: hidden;
     }
-    .contact-inner { max-width: 580px; margin: 0 auto; }
+    /* Soft green bloom left, orange bloom right */
+    #contact::before {
+      content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse at 0% 60%,  rgba(0,104,71,0.13)  0%, transparent 55%),
+        radial-gradient(ellipse at 100% 40%, rgba(191,87,0,0.11)  0%, transparent 55%),
+        radial-gradient(ellipse at 50% 100%, rgba(0,104,71,0.07)  0%, transparent 50%);
+    }
+    .contact-inner {
+      max-width: 580px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
     .contact-inner .section-eyebrow { justify-content: center; }
     .contact-inner .section-eyebrow::before { display: none; }
     .contact-inner .section-title { font-size: clamp(2rem,4vw,3.2rem); margin-bottom: 0.75rem; }
+    .contact-inner .section-title em { color: var(--orange); }
     .contact-inner .section-sub { margin: 0 auto 2.5rem; text-align: center; }
     .contact-buttons { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
 
@@ -591,18 +604,29 @@
     .footer-flag span:nth-child(3) { background: var(--orange); flex: 1; }
 
     /* ── RESPONSIVE ── */
+    /* Medium screens shrink photo, keep visible */
+    @media (max-width: 1000px) {
+      .hero-inner { gap: 2rem; }
+      .hero-photo, .hero-photo-placeholder { width: 200px; height: 250px; }
+      .hero-photo-offset { width: 200px; height: 250px; }
+    }
+
     @media (max-width: 900px) {
       .container { padding: 0 1.5rem; }
       nav { padding: 1rem 1.5rem; }
       .nav-links .nav-link:not(.cta) { display: none; }
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-photo-wrap { display: none; }
       .projects-grid, .creative-grid, .exp-grid { grid-template-columns: 1fr; }
       .project-card.featured { flex-direction: column; }
       .project-visual { width: 100%; height: 140px; }
       .about-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
       section { padding: 4rem 0; }
+    }
+
+    /* Small screens stack hero, hide photo */
+    @media (max-width: 640px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-photo-wrap { display: none; }
     }
   </style>
 </head>
@@ -616,7 +640,7 @@
       <a href="#creative" class="nav-link">Creations</a>
       <a href="#experience" class="nav-link">Experience</a>
       <a href="#about" class="nav-link">About</a>
-      <a href="https://www.linkedin.com/in/sergiogarciatx/" target="_blank" class="nav-link">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/sergio-garcia-tx/" target="_blank" class="nav-link">LinkedIn</a>
       <a href="resume.pdf" target="_blank" class="nav-link cta">Résumé ↗</a>
     </div>
   </nav>
@@ -645,12 +669,12 @@
           </p>
 
           <p class="hero-bio">
-            <strong>PR student at UT Austin (Moody College, Class of 2027)</strong> specializing in social media strategy, media analytics and integrated campaign development. First-generation Hispanic professional making data <strong>speak to people</strong>, not just analysts — bilingual, Dean's List and driven by ethical, future-forward storytelling.
+            <strong>PR student at UT Austin (Moody College, Class of 2027)</strong> specializing in social media strategy, media analytics and integrated campaign development. First-generation Hispanic professional making data <strong>speak to people</strong>, not just analysts bilingual, Dean's List and driven by ethical, future-forward storytelling.
           </p>
 
           <div class="hero-buttons">
             <a href="#projects" class="btn-solid">View My Work</a>
-            <a href="https://www.linkedin.com/in/sergiogarciatx/" target="_blank" class="btn-glass">LinkedIn ↗</a>
+            <a href="https://www.linkedin.com/in/sergio-garcia-tx/" target="_blank" class="btn-glass">LinkedIn ↗</a>
             <a href="resume.pdf" target="_blank" class="btn-orange-glass">Download Résumé</a>
           </div>
 
@@ -676,12 +700,12 @@
       <div class="section-header">
         <p class="section-eyebrow">PR Projects</p>
         <h2 class="section-title">Strategy &amp; research<br><em>in action.</em></h2>
-        <p class="section-sub">Academic campaign work built on real research methods, AP-standard writing and integrated PR strategy — produced at Moody College of Communication.</p>
+        <p class="section-sub">Academic campaign work built on real research methods, AP-standard writing and integrated PR strategy produced at Moody College of Communication.</p>
       </div>
 
       <div class="projects-grid">
 
-        <!-- ERCOT — featured full-width -->
+        <!-- ERCOT featured full-width -->
         <div class="project-card featured">
           <div class="project-visual">
             <p class="project-visual-label">ERCOT</p>
@@ -689,7 +713,7 @@
           <div class="project-body">
             <p class="project-tag">Public Relations · Crisis Communications</p>
             <h3>ERCOT PR Suite</h3>
-            <p>Comprehensive PR package for one of Texas's most scrutinized public utilities — navigating high-stakes public perception with a professional media kit, a publication-ready news release and a full event plan designed to rebuild trust with Texas residents.</p>
+            <p>Comprehensive PR package for one of Texas's most scrutinized public utilities navigating high-stakes public perception with a professional media kit, a publication-ready news release and a full event plan designed to rebuild trust with Texas residents.</p>
             <div class="deliverables">
               <span class="deliverable-tag">Media Kit</span>
               <span class="deliverable-tag">News Release</span>
@@ -705,8 +729,8 @@
         <div class="project-card">
           <div class="project-body">
             <p class="project-tag">Integrated Campaign · Media Planning</p>
-            <h3>Amy's Ice Cream — Full Campaign Deck</h3>
-            <p>End-to-end integrated campaign including primary research, SWOT, competitive analysis, audience personas, segmentation, budget allocation and a complete communication plan — built for a beloved Austin-born brand.</p>
+            <h3>Amy's Ice Cream Full Campaign Deck</h3>
+            <p>End-to-end integrated campaign including primary research, SWOT, competitive analysis, audience personas, segmentation, budget allocation and a complete communication plan built for a beloved Austin-born brand.</p>
             <div class="deliverables">
               <span class="deliverable-tag">Primary Research</span>
               <span class="deliverable-tag">SWOT Analysis</span>
@@ -722,8 +746,8 @@
         <div class="project-card orange-top">
           <div class="project-body">
             <p class="project-tag">Marketing · Consumer Research</p>
-            <h3>Simply Gum — Gen Z SWOT Analysis</h3>
-            <p>Comprehensive SWOT analysis examining Simply Gum's market positioning for Gen Z consumers — identifying strategic opportunities in the natural products space and evaluating competitive threats from legacy brands.</p>
+            <h3>Simply Gum Gen Z SWOT Analysis</h3>
+            <p>Comprehensive SWOT analysis examining Simply Gum's market positioning for Gen Z consumers identifying strategic opportunities in the natural products space and evaluating competitive threats from legacy brands.</p>
             <div class="deliverables">
               <span class="deliverable-tag">SWOT Analysis</span>
               <span class="deliverable-tag">Gen Z Insights</span>
@@ -739,7 +763,7 @@
           <div class="project-body">
             <p class="project-tag">Journalism · AP Style Writing</p>
             <h3>AP Stylebook Writing Portfolio</h3>
-            <p>Publication-ready journalism including a hard news story and a long-form feature — both written, edited and formatted to full AP Stylebook standards. Demonstrates newsroom-ready writing craft and editorial judgment.</p>
+            <p>Publication-ready journalism including a hard news story and a long-form feature both written, edited and formatted to full AP Stylebook standards. Demonstrates newsroom-ready writing craft and editorial judgment.</p>
             <div class="deliverables">
               <span class="deliverable-tag">News Story</span>
               <span class="deliverable-tag">Feature Story</span>
@@ -764,7 +788,7 @@
       <div class="section-header">
         <p class="section-eyebrow">Creations</p>
         <h2 class="section-title">Designed to engage.<br><em>Built to perform.</em></h2>
-        <p class="section-sub">Social media content, graphic design, photography and short-form video produced for two UT Austin organizations — with real metrics to show for it.</p>
+        <p class="section-sub">Social media content, graphic design, photography and short-form video produced for two UT Austin organizations with real metrics to show for it.</p>
       </div>
 
       <div class="creative-grid">
@@ -777,7 +801,7 @@
           <div class="creative-body">
             <p class="creative-tag">HPRSA · Graphic Design</p>
             <h3>Event Flyers, Professional Development &amp; Meeting Recaps</h3>
-            <p>25 posts — 18 photos, five carousels and one reel — plus story post animations for each event flyer, promoting chapter meetings and professional development events across Instagram.</p>
+            <p>25 posts 18 photos, five carousels and one reel plus story post animations for each event flyer, promoting chapter meetings and professional development events across Instagram.</p>
             <div class="metrics-row">
               <div class="metric"><span class="metric-value">730</span><span class="metric-label">Likes</span></div>
               <div class="metric"><span class="metric-value">121</span><span class="metric-label">Comments</span></div>
@@ -788,7 +812,7 @@
         </div>
 
         <!-- HPRSA Reel -->
-        <div class="creative-card orange-top">
+        <div class="creative-card orange-top" style="cursor:pointer;" onclick="window.open('https://www.instagram.com/reel/DPxFW-CjG4x/?igsh=MTRoZTR6NnAzZjYycQ==','_blank')">
           <div class="creative-thumb">
             <img src="hprsa-reel-thumb.jpg" alt="Hispanic Heritage Month Reel" onerror="this.style.display='none'" />
           </div>
@@ -805,7 +829,7 @@
         </div>
 
         <!-- DA&PR Carousel -->
-        <div class="creative-card orange-top">
+        <div class="creative-card orange-top" style="cursor:pointer;" onclick="window.open('https://www.instagram.com/p/DNog6upgQ1m/?img_index=9&igsh=MXF2NmdteTR2Z3pyeg==','_blank')">
           <div class="creative-thumb">
             <img src="dapr-carousel-thumb.jpg" alt="Internship Spotlight Carousel" onerror="this.style.display='none'" />
           </div>
@@ -828,11 +852,11 @@
           <div class="creative-body">
             <p class="creative-tag">DA&amp;PR · Graphic Design</p>
             <h3>Meeting &amp; Event Flyers</h3>
-            <p>12 branded flyers for meetings, guest speaker events and socials — each paired with an animated story post version; maintained cohesive visual identity across all organizational communications.</p>
+            <p>12 branded flyers for meetings, guest speaker events and socials each paired with an animated story post version; maintained cohesive visual identity across all organizational communications.</p>
           </div>
         </div>
 
-        <!-- HPRSA Headshots — full width -->
+        <!-- HPRSA Headshots full width -->
         <div class="creative-card full-width">
           <div class="creative-thumb" style="aspect-ratio:21/7;">
             <img src="hprsa-headshots-thumb.jpg" alt="HPRSA Headshot Sessions" onerror="this.style.display='none'" />
@@ -840,7 +864,7 @@
           <div class="creative-body">
             <p class="creative-tag">HPRSA · Photography</p>
             <h3>Professional Headshot Sessions</h3>
-            <p>Organized and directed two free headshot sessions for HPRSA members — handled setup, lighting direction and post-session file distribution, with a combined turnout of 15 participants across both sessions.</p>
+            <p>Organized and directed two free headshot sessions for HPRSA members handled setup, lighting direction and post-session file distribution, with a combined turnout of 15 participants across both sessions.</p>
             <div class="metrics-row">
               <div class="metric"><span class="metric-value">15</span><span class="metric-label">Participants</span></div>
               <div class="metric"><span class="metric-value">2</span><span class="metric-label">Sessions Held</span></div>
@@ -866,12 +890,12 @@
       <div class="section-header">
         <p class="section-eyebrow">Experience</p>
         <h2 class="section-title">Beyond<br><em>the classroom.</em></h2>
-        <p class="section-sub">Sales leadership, campus media direction and real agency exposure — every role shaped how I think about audiences, data and communication.</p>
+        <p class="section-sub">Sales leadership, campus media direction and real agency exposure every role shaped how I think about audiences, data and communication.</p>
       </div>
 
       <div class="exp-grid">
 
-        <!-- Buckle LIT — current -->
+        <!-- Buckle LIT current -->
         <div class="exp-card">
           <p class="exp-tag">Current Role · Retail Leadership</p>
           <h3>Leader in Training</h3>
@@ -892,7 +916,7 @@
           <ul>
             <li>Designed a 30-day strategic business plan focused on Buckle Black brand visibility and sales growth</li>
             <li>Led a store-wide initiative integrating brand education, visual merchandising and guest interaction</li>
-            <li>Moved national sales ranking from <strong>91st to 43rd</strong> — a jump from the bottom half into the top 4% nationally — and grew sellable units from 172 to 248 in 30 days</li>
+            <li>Moved national sales ranking from <strong>91st to 43rd</strong> a jump from the bottom half into the top 4% nationally and grew sellable units from 172 to 248 in 30 days</li>
           </ul>
           <div class="exp-stat">
             <span class="exp-stat-value">91st → 43rd</span>
@@ -907,7 +931,7 @@
           <p class="exp-company">Hispanic PR Student Association</p>
           <p class="exp-date">May 2025–Present · Austin, Texas</p>
           <ul>
-            <li>Produced 25 posts (18 photos, five carousels, one reel) plus story animations to promote chapter events and drive member engagement — reaching 47,922 accounts combined</li>
+            <li>Produced 25 posts (18 photos, five carousels, one reel) plus story animations to promote chapter events and drive member engagement reaching 47,922 accounts combined</li>
             <li>Organized two free professional headshot sessions with a turnout of 15 participants</li>
             <li>Mentor underclassmen through events and leadership, supporting their professional development</li>
           </ul>
@@ -933,9 +957,9 @@
           <p class="exp-company">Giant Noise</p>
           <p class="exp-date">March 2025 · Austin, Texas</p>
           <ul>
-            <li>Supported event operations for Hook 'Em House at SXSW — one of Austin's most high-profile branded activations during the world's largest creative festival, managed by one of Texas's leading independent PR agencies</li>
+            <li>Supported event operations for Hook 'Em House at SXSW one of Austin's most high-profile branded activations during the world's largest creative festival, managed by one of Texas's leading independent PR agencies</li>
             <li>Managed wristband distribution and attendee access compliance across a high-volume, fast-paced event environment</li>
-            <li>Gained direct exposure to professional PR agency event execution — including stakeholder coordination, talent logistics and on-the-ground brand management — in a real-world, high-stakes setting</li>
+            <li>Gained direct exposure to professional PR agency event execution including stakeholder coordination, talent logistics and on-the-ground brand management in a real-world, high-stakes setting</li>
           </ul>
         </div>
 
@@ -982,9 +1006,9 @@
 
       <div class="about-grid">
         <div class="about-bio">
-          <p>I'm a <strong>Public Relations student with a Business minor</strong> at the University of Texas at Austin, selected for the prestigious <strong>Texas Media &amp; Analytics Spring 2026 Cohort</strong> at Moody College of Communication and currently on the Dean's List.</p>
+          <p>I'm a <strong>Public Relations student with a Business minor</strong> at the University of Texas at Austin, selected for the prestigious <strong>Texas Media &amp; Analytics Spring 2026 Cohort</strong> at Moody College of Communication and a <strong>Fall 2024 Dean's List</strong> honoree.</p>
           <p>My career in sales started right out of high school. From AT&amp;T to T-Mobile to Buckle, I've led teams, exceeded revenue targets and built lasting client relationships. That foundation shapes everything I do in PR: <strong>empathy, clarity and decisions backed by data.</strong></p>
-          <p>On campus, I lead visual and social media strategy for two organizations and mentor underclassmen. I've also had the opportunity to support <strong>Giant Noise at SXSW</strong>. I'm passionate about making complex ideas feel human — especially for audiences that don't always see themselves represented in the room.</p>
+          <p>On campus, I lead visual and social media strategy for two organizations and mentor underclassmen. I've also had the opportunity to support <strong>Giant Noise at SXSW</strong>. I'm passionate about making complex ideas feel human especially for audiences that don't always see themselves represented in the room.</p>
         </div>
 
         <div class="skills-col">
@@ -1036,7 +1060,7 @@
           </div>
 
           <div class="skills-group">
-            <p class="skills-group-title" style="color:var(--orange);">Certifications — In Progress</p>
+            <p class="skills-group-title" style="color:var(--orange);">Certifications In Progress</p>
             <div class="cert-list">
               <div class="cert-item"><span class="cert-dot"></span>Google AdWords</div>
               <div class="cert-item"><span class="cert-dot"></span>Google Analytics</div>
@@ -1060,10 +1084,10 @@
       <div class="contact-inner">
         <p class="section-eyebrow">Let's Connect</p>
         <h2 class="section-title">Ready to work<br><em>with purpose.</em></h2>
-        <p class="section-sub">Whether you're a recruiter, a brand or a fellow creative — I'd love to connect and talk about what we can build together.</p>
+        <p class="section-sub">Whether you're a recruiter, a brand or a fellow creative I'd love to connect and talk about what we can build together.</p>
         <div class="contact-buttons">
           <a href="mailto:sergiogarciatx@gmail.com" class="contact-link primary">Email Me</a>
-          <a href="https://www.linkedin.com/in/sergiogarciatx/" target="_blank" class="contact-link">LinkedIn ↗</a>
+          <a href="https://www.linkedin.com/in/sergio-garcia-tx/" target="_blank" class="contact-link">LinkedIn ↗</a>
           <a href="resume.pdf" target="_blank" class="contact-link">Download Résumé</a>
         </div>
       </div>
