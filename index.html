@@ -304,6 +304,31 @@
       color: rgba(0,104,71,0.18); letter-spacing: -0.03em;
       position: relative; z-index: 1; text-align: center;
     }
+    /* Thumbnail for non-featured project cards */
+    .project-thumb {
+      width: 100%; aspect-ratio: 16/9; position: relative;
+      background: linear-gradient(135deg, var(--green-light) 0%, var(--orange-light) 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.55);
+      overflow: hidden; flex-shrink: 0;
+    }
+    .project-card.orange-top .project-thumb {
+      background: linear-gradient(135deg, var(--orange-light) 0%, var(--green-light) 100%);
+    }
+    .project-thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+      position: absolute; inset: 0; transition: transform 0.35s;
+    }
+    .project-card:hover .project-thumb img { transform: scale(1.04); }
+    .project-thumb-placeholder {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .project-thumb-placeholder span {
+      font-family: 'Fraunces', serif; font-optical-sizing: auto;
+      font-weight: 900; font-size: 3rem; line-height: 1;
+      color: rgba(0,104,71,0.14); letter-spacing: -0.02em;
+    }
+    .project-card.orange-top .project-thumb-placeholder span { color: rgba(191,87,0,0.14); }
 
     .project-body { padding: 1.75rem 2rem; flex: 1; display: flex; flex-direction: column; }
     .project-tag {
@@ -708,6 +733,9 @@
         <!-- ERCOT featured full-width -->
         <div class="project-card featured">
           <div class="project-visual">
+            <img src="ercot-thumb.jpg" alt="ERCOT PR Suite"
+              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:0;"
+              onerror="this.style.display='none'" />
             <p class="project-visual-label">ERCOT</p>
           </div>
           <div class="project-body">
@@ -727,6 +755,11 @@
 
         <!-- Amy's Ice Cream -->
         <div class="project-card">
+          <div class="project-thumb">
+            <img src="amys-thumb.jpg" alt="Amy's Ice Cream Campaign"
+              onerror="this.style.display='none'" />
+            <div class="project-thumb-placeholder"><span>Amy's</span></div>
+          </div>
           <div class="project-body">
             <p class="project-tag">Integrated Campaign · Media Planning</p>
             <h3>Amy's Ice Cream Full Campaign Deck</h3>
@@ -744,6 +777,11 @@
 
         <!-- Simply Gum -->
         <div class="project-card orange-top">
+          <div class="project-thumb">
+            <img src="simplygum-thumb.jpg" alt="Simply Gum SWOT Analysis"
+              onerror="this.style.display='none'" />
+            <div class="project-thumb-placeholder"><span>Simply Gum</span></div>
+          </div>
           <div class="project-body">
             <p class="project-tag">Marketing · Consumer Research</p>
             <h3>Simply Gum Gen Z SWOT Analysis</h3>
@@ -760,6 +798,11 @@
 
         <!-- AP Style -->
         <div class="project-card">
+          <div class="project-thumb">
+            <img src="apstyle-thumb.jpg" alt="AP Style Writing Portfolio"
+              onerror="this.style.display='none'" />
+            <div class="project-thumb-placeholder"><span>AP Style</span></div>
+          </div>
           <div class="project-body">
             <p class="project-tag">Journalism · AP Style Writing</p>
             <h3>AP Stylebook Writing Portfolio</h3>
