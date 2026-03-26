@@ -3,39 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Creations — Sergio Garcia</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700;1,9..144,900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <title>Gallery — Sergio Garcia</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700;1,9..144,900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --green:        #006847;
-      --green-dark:   #004d34;
-      --green-light:  #d4e9de;
-      --orange:       #BF5700;
-      --orange-dark:  #994400;
-      --orange-light: #f5ddc8;
-      --slate:        #3D5A6B;
-      --dark:         #1a1a1a;
-      --warm-gray:    #5a5350;
-
-      --r-sm:   8px;
-      --r-md:   14px;
-      --r-lg:   20px;
-      --r-pill: 999px;
-
-      --glass-bg:     rgba(255,255,255,0.55);
+      --green: #006847; --green-dark: #004d34; --green-light: #d4e9de;
+      --orange: #BF5700; --orange-light: #f5ddc8;
+      --dark: #1a1a1a; --warm-gray: #5a5350;
+      --r-sm: 8px; --r-md: 14px; --r-lg: 20px; --r-pill: 999px;
+      --glass-bg: rgba(255,255,255,0.55);
       --glass-border: rgba(255,255,255,0.78);
       --glass-shadow: 0 4px 28px rgba(0,80,40,0.08), inset 0 1px 0 rgba(255,255,255,0.92);
-      --glass-blur:   blur(20px) saturate(170%);
+      --glass-blur: blur(20px) saturate(170%);
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      color: var(--dark); overflow-x: hidden;
-      background: linear-gradient(165deg,
-        #e5f0ea 0%, #f4f0e8 20%, #faf8f4 42%, #f7efe3 65%, #f1e5d4 100%);
+      font-family: 'Plus Jakarta Sans', sans-serif; color: var(--dark);
+      overflow-x: hidden;
+      background: linear-gradient(165deg, #e5f0ea 0%, #f4f0e8 20%, #faf8f4 42%, #f7efe3 65%, #f1e5d4 100%);
       background-attachment: fixed; min-height: 100vh;
     }
     body::before {
@@ -43,7 +30,6 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       opacity: 0.055; pointer-events: none; z-index: 9999;
     }
-
     .container { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
 
     /* ── NAV ── */
@@ -61,461 +47,436 @@
       font-size: 1.4rem; color: var(--dark); text-decoration: none; letter-spacing: -0.01em;
     }
     .nav-logo span { color: var(--green); font-style: italic; }
-    .nav-back {
+    .nav-links { display: flex; align-items: center; gap: 0.35rem; }
+    .nav-link {
       font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600;
-      font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase;
+      font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase;
       color: var(--warm-gray); text-decoration: none;
-      padding: 0.45rem 1rem; border-radius: var(--r-pill);
-      border: 1px solid rgba(0,104,71,0.18);
-      background: rgba(255,255,255,0.45); backdrop-filter: blur(10px);
+      padding: 0.4rem 0.85rem; border-radius: var(--r-pill);
       transition: background 0.2s, color 0.2s;
     }
-    .nav-back:hover { background: rgba(255,255,255,0.75); color: var(--green); }
+    .nav-link:hover { background: rgba(0,104,71,0.08); color: var(--green); }
+    .nav-link.cta {
+      background: var(--green); color: #fff; padding: 0.4rem 1rem;
+      box-shadow: 0 2px 10px rgba(0,104,71,0.2);
+    }
+    .nav-link.cta:hover { background: var(--green-dark); }
+    .nav-link.back { color: var(--green); }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: flex; flex-direction: column; justify-content: center; gap: 5px;
+      width: 36px; height: 36px;
+      background: none; border: none; outline: none;
+      cursor: pointer; padding: 6px 4px; flex-shrink: 0;
+    }
+    @media (min-width: 1081px) {
+      .nav-hamburger { display: none; }
+      .nav-links { display: flex !important; }
+    }
+    .nav-hamburger span {
+      display: block; height: 2.5px; width: 100%; border-radius: 2px;
+      background: var(--dark); transition: all 0.25s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Backdrop */
+    .nav-backdrop {
+      display: none; position: fixed; inset: 0; z-index: 98;
+      background: rgba(26,26,26,0.45);
+      backdrop-filter: blur(6px) saturate(80%);
+      -webkit-backdrop-filter: blur(6px) saturate(80%);
+    }
+    .nav-backdrop.open { display: block; }
+
+    /* Drawer */
+    .nav-drawer {
+      position: fixed; top: 0; right: 0; bottom: 0; z-index: 99;
+      width: min(300px, 82vw);
+      background: rgba(245,242,236,0.97);
+      backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border-left: 1px solid rgba(0,104,71,0.12);
+      box-shadow: -6px 0 36px rgba(0,0,0,0.1);
+      transform: translateX(100%);
+      transition: transform 0.28s cubic-bezier(0.4,0,0.2,1);
+      padding-top: 76px;
+    }
+    .nav-drawer.open { transform: translateX(0); }
+    .drawer-close {
+      position: absolute; top: 1.1rem; right: 1.1rem;
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 50%; font-size: 0.9rem; color: var(--dark);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.18s;
+    }
+    .drawer-close:hover { background: rgba(255,255,255,0.9); }
+    .nav-drawer-inner { display: flex; flex-direction: column; padding: 1.25rem 1.5rem; gap: 0.2rem; }
+    .drawer-link {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600;
+      font-size: 1rem; color: var(--dark); text-decoration: none;
+      padding: 0.8rem 0.75rem; border-radius: var(--r-md);
+      border-bottom: 1px solid rgba(0,104,71,0.07);
+      transition: background 0.18s, color 0.18s;
+    }
+    .drawer-link:last-child { border-bottom: none; }
+    .drawer-link:hover { background: rgba(0,104,71,0.07); color: var(--green); }
+    .drawer-cta {
+      margin-top: 0.75rem; background: var(--green); color: #fff !important;
+      text-align: center; border-radius: var(--r-pill) !important;
+      font-weight: 700; letter-spacing: 0.06em;
+      box-shadow: 0 4px 14px rgba(0,104,71,0.25);
+      border-bottom: none !important; padding: 0.85rem 1rem;
+    }
+    .drawer-cta:hover { background: var(--green-dark) !important; }
 
     /* ── PAGE HEADER ── */
-    .page-header { padding: 9rem 0 3.5rem; position: relative; overflow: hidden; }
-    .page-header::before {
-      content: ''; position: absolute; top: -20%; left: -5%;
-      width: 55%; height: 140%;
-      background: radial-gradient(ellipse at 30% 50%, rgba(0,104,71,0.11) 0%, transparent 60%);
-      pointer-events: none;
+    .gallery-header {
+      padding: 8rem 0 3rem;
+      position: relative; overflow: hidden;
     }
-    .page-header::after {
-      content: ''; position: absolute; top: 0; right: 0;
-      width: 45%; height: 100%;
-      background: radial-gradient(ellipse at 80% 50%, rgba(191,87,0,0.08) 0%, transparent 60%);
-      pointer-events: none;
+    .gallery-header::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse at 0% 50%, rgba(0,104,71,0.11) 0%, transparent 55%),
+                  radial-gradient(ellipse at 100% 50%, rgba(191,87,0,0.08) 0%, transparent 55%);
     }
-    .page-header-inner {
-      position: relative; z-index: 1;
-      display: flex; justify-content: space-between; align-items: flex-end;
-      gap: 2rem; flex-wrap: wrap;
+    .gallery-header-inner { position: relative; z-index: 1; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600;
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--green); text-decoration: none; margin-bottom: 1.5rem;
+      transition: gap 0.2s;
     }
-    .page-eyebrow {
-      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
-      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--green); margin-bottom: 0.65rem;
-      display: flex; align-items: center; gap: 0.75rem;
-    }
-    .page-eyebrow::before {
-      content: ''; width: 28px; height: 2px;
-      background: var(--green); border-radius: var(--r-pill); flex-shrink: 0;
-    }
-    .page-title {
+    .back-link:hover { gap: 0.65rem; }
+    .gallery-title {
       font-family: 'Fraunces', serif; font-optical-sizing: auto; font-weight: 900;
-      font-size: clamp(2.8rem, 5vw, 4.5rem); line-height: 0.95;
-      color: var(--dark); letter-spacing: -0.02em;
+      font-size: clamp(3rem, 6vw, 5.5rem); line-height: 0.9;
+      color: var(--dark); letter-spacing: -0.025em; margin-bottom: 1rem;
     }
-    .page-title em { color: var(--green); font-style: italic; }
-    .page-sub { font-size: 1rem; color: var(--warm-gray); line-height: 1.8; max-width: 420px; margin-top: 1.1rem; }
+    .gallery-title em { color: var(--green); font-style: italic; }
+    .gallery-subtitle {
+      font-size: 1rem; color: var(--warm-gray); line-height: 1.8; max-width: 500px;
+    }
 
     /* ── FILTER TABS ── */
-    .filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; align-self: flex-end; padding-bottom: 0.2rem; }
+    .filter-row {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+      margin: 2.5rem 0 3rem;
+    }
     .filter-btn {
       font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
-      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.55rem 1.3rem; border-radius: var(--r-pill);
-      border: 1.5px solid rgba(0,104,71,0.22);
-      background: rgba(255,255,255,0.45); backdrop-filter: blur(12px);
-      color: var(--warm-gray); cursor: pointer; transition: all 0.2s;
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.5rem 1.2rem; border-radius: var(--r-pill);
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+      border: 1.5px solid var(--glass-border);
+      color: var(--warm-gray); cursor: pointer;
+      box-shadow: var(--glass-shadow);
+      transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+      position: relative; overflow: hidden;
     }
-    .filter-btn:hover { background: rgba(255,255,255,0.72); color: var(--green); }
+    .filter-btn::before {
+      content: ''; position: absolute;
+      top: 0; left: -100%; width: 60%; height: 100%;
+      background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
+      transform: skewX(-20deg); transition: left 0.4s ease; pointer-events: none;
+    }
+    .filter-btn:hover::before { left: 160%; }
+    .filter-btn:hover {
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      color: var(--green); border-color: rgba(0,104,71,0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,104,71,0.1), inset 0 1px 0 rgba(255,255,255,1);
+    }
     .filter-btn.active {
       background: var(--green); color: #fff; border-color: var(--green);
-      box-shadow: 0 4px 14px rgba(0,104,71,0.25);
+      box-shadow: 0 4px 14px rgba(0,104,71,0.28);
     }
-
-    .section-divider { border: none; border-top: 1px solid rgba(0,104,71,0.12); margin: 0; }
-
-    /* ── ORG SECTION ── */
-    .org-section { padding: 4rem 0; }
-    .org-section.hidden { display: none; }
-
-    .org-header { display: flex; align-items: flex-start; gap: 1.25rem; margin-bottom: 2.5rem; }
-    .org-badge {
-      flex-shrink: 0; width: 48px; height: 48px; border-radius: var(--r-md);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.1rem; font-optical-sizing: auto;
-    }
-    .org-badge.green { background: var(--green); color: #fff; }
-    .org-badge.orange { background: var(--orange); color: #fff; }
-    .org-label {
-      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
-      font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--green); margin-bottom: 0.25rem;
-    }
-    .org-label.orange { color: var(--orange); }
-    .org-name {
-      font-family: 'Fraunces', serif; font-optical-sizing: auto;
-      font-weight: 700; font-size: 1.5rem; color: var(--dark); line-height: 1.1; letter-spacing: -0.01em;
-    }
-    .org-role { font-size: 0.85rem; color: var(--warm-gray); margin-top: 0.2rem; }
+    .filter-btn.active:hover { background: var(--green-dark); border-color: var(--green-dark); color:#fff; }
 
     /* ── GALLERY GRID ── */
-    .gallery-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.25rem; }
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem; padding-bottom: 5rem;
+    }
 
-    /* ── CREATIVE CARD ── */
-    .creative-card {
+    /* ── GALLERY CARD ── */
+    .gallery-card {
       background: var(--glass-bg);
       backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
       border: 1px solid var(--glass-border);
-      border-top: 4px solid var(--green);
       border-radius: var(--r-md); overflow: hidden;
       box-shadow: var(--glass-shadow);
       transition: transform 0.22s, box-shadow 0.22s;
-      cursor: pointer;
+      display: flex; flex-direction: column;
     }
-    .creative-card.orange-top { border-top-color: var(--orange); }
-    .creative-card.full-width { grid-column: 1 / -1; }
-    .creative-card:hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(0,80,40,0.13); }
+    .gallery-card.green-top { border-top: 4px solid var(--green); }
+    .gallery-card.orange-top { border-top: 4px solid var(--orange); }
+    .gallery-card.full-width { grid-column: 1 / -1; flex-direction: row; }
+    .gallery-card:hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(0,80,40,0.13); }
 
-    /* ── THUMBNAIL ── */
-    .creative-thumb {
+    /* Thumb */
+    .gallery-thumb {
       width: 100%; aspect-ratio: 16/9; position: relative;
       background: linear-gradient(135deg, var(--green-light) 0%, var(--orange-light) 100%);
-      border-bottom: 1px solid rgba(255,255,255,0.55);
-      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.55); overflow: hidden; flex-shrink: 0;
     }
-    .creative-thumb.wide { aspect-ratio: 21/9; }
-    .creative-thumb img {
+    .gallery-card.orange-top .gallery-thumb {
+      background: linear-gradient(135deg, var(--orange-light) 0%, var(--green-light) 100%);
+    }
+    .gallery-card.full-width .gallery-thumb {
+      width: 300px; aspect-ratio: unset; height: auto;
+      border-bottom: none; border-right: 1px solid rgba(255,255,255,0.55);
+    }
+    .gallery-thumb img {
       width: 100%; height: 100%; object-fit: cover;
-      position: absolute; inset: 0;
-      transition: transform 0.35s;
+      position: absolute; inset: 0; transition: transform 0.35s;
     }
-    .creative-card:hover .creative-thumb img { transform: scale(1.04); }
+    .gallery-card:hover .gallery-thumb img { transform: scale(1.04); }
 
-    /* ── GLASS HOVER OVERLAY ── */
+    /* Hover overlay on thumbnails */
     .thumb-overlay {
       position: absolute; inset: 0; z-index: 2;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(250,248,244,0.18);
-      backdrop-filter: blur(0px) saturate(100%);
-      -webkit-backdrop-filter: blur(0px) saturate(100%);
-      opacity: 0;
-      transition: opacity 0.28s, backdrop-filter 0.28s, -webkit-backdrop-filter 0.28s;
+      background: rgba(0,0,0,0); display: flex;
+      align-items: center; justify-content: center;
+      transition: background 0.3s;
+      pointer-events: none;
     }
-    .creative-card:hover .thumb-overlay {
-      opacity: 1;
-      backdrop-filter: blur(8px) saturate(150%);
-      -webkit-backdrop-filter: blur(8px) saturate(150%);
+    .gallery-card:hover .thumb-overlay { background: rgba(10,30,20,0.38); pointer-events: auto; }
+
+    /* Shimmer sweep on overlay */
+    .thumb-overlay::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%);
+      transform: translateX(-100%) skewX(-20deg);
+      transition: transform 0.55s ease;
+      pointer-events: none;
     }
-    .overlay-btn {
+    .gallery-card:hover .thumb-overlay::before { transform: translateX(200%) skewX(-20deg); }
+
+    /* Centered button inside overlay */
+    .thumb-btn {
+      display: inline-flex; align-items: center; gap: 0.45rem;
       font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
-      font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--dark); text-decoration: none;
-      padding: 0.65rem 1.6rem;
-      border-radius: var(--r-pill);
-      background: rgba(255,255,255,0.72);
-      backdrop-filter: blur(12px) saturate(180%);
-      -webkit-backdrop-filter: blur(12px) saturate(180%);
-      border: 1.5px solid rgba(255,255,255,0.9);
-      box-shadow: 0 4px 18px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,1);
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-      pointer-events: all;
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #fff; text-decoration: none;
+      padding: 0.65rem 1.4rem; border-radius: var(--r-pill);
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid rgba(255,255,255,0.55);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.4);
+      opacity: 0; transform: translateY(8px) scale(0.95);
+      transition: opacity 0.28s, transform 0.28s;
+      position: relative; z-index: 3;
     }
-    .overlay-btn:hover {
-      background: rgba(255,255,255,0.92);
-      transform: scale(1.05);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.14);
-    }
-    .overlay-btn.green-tint {
-      border-color: rgba(0,104,71,0.35);
-      color: var(--green);
-    }
-    .overlay-btn.orange-tint {
-      border-color: rgba(191,87,0,0.35);
-      color: var(--orange);
+    .gallery-card:hover .thumb-btn { opacity: 1; transform: translateY(0) scale(1); }
+    .thumb-btn:hover {
+      background: rgba(255,255,255,0.3);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.6);
     }
 
-    /* ── CARD BODY ── */
-    .creative-body { padding: 1.6rem 1.75rem; }
-    .creative-tag {
+    /* Card body */
+    .gallery-body { padding: 1.4rem 1.6rem; flex: 1; display: flex; flex-direction: column; }
+    .gallery-tag {
       font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
-      font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--green); margin-bottom: 0.45rem;
+      font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 0.4rem;
     }
-    .creative-card.orange-top .creative-tag { color: var(--orange); }
-    .creative-card h3 {
+    .gallery-card.orange-top .gallery-tag { color: var(--orange); }
+    .gallery-card h3 {
       font-family: 'Fraunces', serif; font-optical-sizing: auto;
-      font-weight: 700; font-size: 1.1rem; color: var(--dark);
-      margin-bottom: 0.65rem; line-height: 1.3;
+      font-weight: 700; font-size: 1rem; color: var(--dark);
+      margin-bottom: 0.55rem; line-height: 1.3;
     }
-    .creative-card p { font-size: 0.87rem; color: var(--warm-gray); line-height: 1.75; }
-
-    .metrics-bar {
-      display: flex; gap: 1.5rem; flex-wrap: wrap;
-      padding-top: 0.85rem; border-top: 1px solid rgba(0,0,0,0.07);
-      margin-top: 0.85rem;
+    .gallery-card p { font-size: 0.85rem; color: var(--warm-gray); line-height: 1.75; flex: 1; }
+    .metrics-row {
+      display: flex; gap: 1.25rem; flex-wrap: wrap;
+      margin-top: 0.85rem; padding-top: 0.85rem;
+      border-top: 1px solid rgba(0,0,0,0.07);
     }
-    .metric { display: flex; flex-direction: column; gap: 0.1rem; }
+    .metric { display: flex; flex-direction: column; gap: 0.06rem; }
     .metric-value {
       font-family: 'Fraunces', serif; font-optical-sizing: auto;
-      font-weight: 700; font-size: 1.25rem; color: var(--dark); line-height: 1;
+      font-weight: 700; font-size: 1.1rem; color: var(--dark); line-height: 1;
     }
     .metric-label {
       font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600;
-      font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-gray);
+      font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-gray);
     }
-    .metrics-note { font-size: 0.7rem; color: var(--warm-gray); font-style: italic; margin-top: 0.4rem; }
+    .metrics-note { font-size: 0.66rem; color: var(--warm-gray); font-style: italic; margin-top: 0.3rem; }
 
-    /* ── PANEL OVERLAY ── */
-    .panel-overlay {
-      display: none; position: fixed; inset: 0; z-index: 200;
-      background: rgba(230,240,234,0.88);
-      backdrop-filter: blur(24px) saturate(180%);
-      -webkit-backdrop-filter: blur(24px) saturate(180%);
-      overflow-y: auto;
-    }
-    .panel-overlay.open { display: block; }
-
-    .panel-inner {
-      max-width: 1100px; margin: 0 auto;
-      padding: 5.5rem 3rem 5rem; position: relative;
-    }
-
-    .panel-close {
-      position: fixed; top: 1.25rem; right: 1.5rem; z-index: 210;
-      width: 44px; height: 44px;
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border: 1.5px solid var(--glass-border);
-      border-radius: var(--r-pill);
-      box-shadow: var(--glass-shadow);
-      color: var(--dark); font-size: 1rem;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .panel-close:hover { background: rgba(255,255,255,0.82); transform: scale(1.08); }
-
-    .panel-header { margin-bottom: 2.5rem; }
-    .panel-eyebrow {
+    /* Glass CTA button on cards — the hover glass shimmer effect */
+    .gallery-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      align-self: flex-start; margin-top: 1rem;
       font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
-      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--green); margin-bottom: 0.5rem;
-      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--green); text-decoration: none;
+      padding: 0.5rem 1.1rem; border-radius: var(--r-pill);
+      border: 1.5px solid rgba(0,104,71,0.28);
+      background: rgba(0,104,71,0.06);
+      position: relative; overflow: hidden;
+      transition: background 0.25s, transform 0.25s, box-shadow 0.25s, border-color 0.25s;
     }
-    .panel-eyebrow::before {
-      content: ''; width: 28px; height: 2px;
-      background: var(--green); border-radius: var(--r-pill); flex-shrink: 0;
+    .gallery-card.orange-top .gallery-btn {
+      color: var(--orange); border-color: rgba(191,87,0,0.28); background: rgba(191,87,0,0.06);
     }
-    .panel-header h2 {
-      font-family: 'Fraunces', serif; font-optical-sizing: auto; font-weight: 900;
-      font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--dark);
-      line-height: 1.05; margin-bottom: 0.5rem; letter-spacing: -0.02em;
+    /* Shimmer sweep */
+    .gallery-btn::before {
+      content: ''; position: absolute;
+      top: 0; left: -100%; width: 60%; height: 100%;
+      background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
+      transform: skewX(-20deg); transition: left 0.45s ease; pointer-events: none;
     }
-    .panel-header h2 em { font-style: italic; color: var(--green); }
-    .panel-header p { font-size: 0.92rem; color: var(--warm-gray); line-height: 1.75; max-width: 580px; }
-
-    /* Panel image grid */
-    .panel-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.1rem; }
-
-    .panel-item {
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
-      border: 1px solid var(--glass-border);
-      border-top: 3px solid var(--green);
-      border-radius: var(--r-md); overflow: hidden;
-      cursor: pointer;
-      box-shadow: var(--glass-shadow);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .panel-item:nth-child(even) { border-top-color: var(--orange); }
-    .panel-item:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,80,40,0.13); }
-
-    .panel-item-media {
-      width: 100%; aspect-ratio: 4/5;
-      background: linear-gradient(135deg, var(--green-light), var(--orange-light));
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 0.5rem;
-      overflow: hidden; position: relative;
-    }
-    .panel-item.square .panel-item-media { aspect-ratio: 1/1; }
-    .panel-item.wide   .panel-item-media { aspect-ratio: 16/9; }
-
-    .panel-item-media img {
-      width: 100%; height: 100%; object-fit: cover;
-      position: absolute; inset: 0; transition: transform 0.3s;
-    }
-    .panel-item:hover .panel-item-media img { transform: scale(1.04); }
-
-    .panel-item-media.anim-bg {
-      background: linear-gradient(135deg,
-        var(--green-light), #faf8f4, var(--orange-light), #faf8f4);
-      background-size: 400% 400%;
-      animation: shimmerBG 3.5s ease infinite;
-    }
-    @keyframes shimmerBG {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .panel-item-icon {
-      width: 40px; height: 40px; border-radius: 50%;
+    .gallery-btn:hover::before { left: 160%; }
+    .gallery-btn:hover {
       background: rgba(255,255,255,0.65);
-      display: flex; align-items: center; justify-content: center; position: relative; z-index: 1;
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-color: rgba(0,104,71,0.45);
+      box-shadow: 0 4px 18px rgba(0,104,71,0.14), inset 0 1px 0 rgba(255,255,255,0.9);
+      transform: translateY(-2px);
     }
-    .panel-item-icon svg { width: 20px; height: 20px; fill: var(--warm-gray); }
-    .panel-item-placeholder {
-      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600;
-      font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--warm-gray); text-align: center; padding: 0 1rem;
-      line-height: 1.6; position: relative; z-index: 1;
-    }
-
-    .anim-badge {
-      position: absolute; top: 0.55rem; left: 0.55rem; z-index: 2;
-      background: var(--orange); color: #fff;
-      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
-      font-size: 0.56rem; letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 0.18rem 0.55rem; border-radius: var(--r-pill);
+    .gallery-card.orange-top .gallery-btn:hover {
+      border-color: rgba(191,87,0,0.45);
+      box-shadow: 0 4px 18px rgba(191,87,0,0.14), inset 0 1px 0 rgba(255,255,255,0.9);
     }
 
-    /* ── ZOOM OVERLAY ── */
-    .zoom-overlay {
-      display: none; position: fixed; inset: 0; z-index: 300;
-      background: rgba(230,240,234,0.92);
-      backdrop-filter: blur(28px) saturate(180%);
-      -webkit-backdrop-filter: blur(28px) saturate(180%);
-      align-items: center; justify-content: center; padding: 2rem;
+    /* Org divider */
+    .org-divider {
+      display: flex; align-items: center; gap: 1rem;
+      margin: 3rem 0 1.5rem;
     }
-    .zoom-overlay.open { display: flex; }
-    .zoom-img {
-      max-width: 700px; width: 100%; max-height: 85vh; object-fit: contain;
-      border-radius: var(--r-lg);
-      box-shadow: 0 16px 60px rgba(0,0,0,0.15);
-      border: 1.5px solid var(--glass-border);
+    .org-divider-line { flex: 1; height: 1px; background: rgba(0,104,71,0.12); }
+    .org-divider-label {
+      font-family: 'Fraunces', serif; font-optical-sizing: auto; font-weight: 700;
+      font-size: 0.8rem; letter-spacing: 0.08em;
+      color: var(--warm-gray); white-space: nowrap;
     }
-    .zoom-close {
-      position: fixed; top: 1.25rem; right: 1.5rem; z-index: 310;
-      width: 44px; height: 44px;
-      background: rgba(191,87,0,0.85);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      border: 1.5px solid rgba(255,255,255,0.4);
-      border-radius: var(--r-pill);
-      color: #fff; font-size: 1rem; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s;
-    }
-    .zoom-close:hover { background: var(--orange-dark); }
-
-    /* ── BACK CTA ── */
-    .back-cta { padding: 2rem 0 5rem; text-align: center; }
-    .btn-primary {
-      background: var(--green); color: #fff; padding: 0.85rem 2.2rem;
-      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
-      font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
-      text-decoration: none; display: inline-block; border-radius: var(--r-pill);
-      box-shadow: 0 4px 18px rgba(0,104,71,0.28);
-      transition: background 0.2s, transform 0.2s;
-    }
-    .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); }
 
     /* ── FOOTER ── */
     footer {
-      background: rgba(242,238,230,0.55); backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(242,238,230,0.55); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
       border-top: 1px solid rgba(0,104,71,0.1);
       padding: 1.75rem 3rem; display: flex; justify-content: space-between; align-items: center;
     }
     footer p { font-size: 0.76rem; color: var(--warm-gray); font-family: 'Plus Jakarta Sans', sans-serif; }
     .footer-flag { display: flex; height: 4px; width: 48px; border-radius: var(--r-pill); overflow: hidden; }
     .footer-flag span:nth-child(1) { background: var(--green); flex: 1; }
-    .footer-flag span:nth-child(2) { background: rgba(200,190,180,0.5); flex: 1; }
+    .footer-flag span:nth-child(2) { background: rgba(200,190,180,0.45); flex: 1; }
     .footer-flag span:nth-child(3) { background: var(--orange); flex: 1; }
 
+    @media (max-width: 1080px) { .nav-links { display: none; } }
     @media (max-width: 900px) {
-      .gallery-grid { grid-template-columns: 1fr; }
-      .panel-grid { grid-template-columns: repeat(2,1fr); }
-      .page-header-inner { flex-direction: column; align-items: flex-start; }
       .container { padding: 0 1.5rem; }
       nav { padding: 1rem 1.5rem; }
-      .panel-inner { padding: 5rem 1.5rem 3rem; }
+      .gallery-card.full-width { flex-direction: column; }
+      .gallery-card.full-width .gallery-thumb { width: 100%; height: 180px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.55); }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
     }
-    @media (max-width: 500px) {
-      .panel-grid { grid-template-columns: 1fr; }
+    @media (max-width: 640px) {
+      .gallery-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <a href="index.html" class="nav-logo">Sergio <span>Garcia</span></a>
-    <a href="index.html#creative" class="nav-back">← Back to Portfolio</a>
+    <div class="nav-links">
+      <a href="index.html#projects"    class="nav-link">Work</a>
+      <a href="index.html#creative"    class="nav-link">Creations</a>
+      <a href="index.html#experience"  class="nav-link">Experience</a>
+      <a href="index.html#about"       class="nav-link">About</a>
+      <a href="https://www.linkedin.com/in/sergio-garcia-tx/" target="_blank" class="nav-link">LinkedIn</a>
+      <a href="resume.pdf" target="_blank" class="nav-link cta">Résumé ↗</a>
+    </div>
+    <button class="nav-hamburger" id="navToggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
-  <!-- PAGE HEADER -->
-  <div class="page-header">
-    <div class="container">
-      <div class="page-header-inner">
-        <div class="page-header-text">
-          <p class="page-eyebrow">Creations</p>
-          <h1 class="page-title">Every<br><em>Creation.</em></h1>
-          <p class="page-sub">All creative work produced during my time in college — flyers, reels, carousels and photo sessions for HPRSA and DA&amp;PR since May 2025.</p>
-        </div>
-        <div class="filter-bar">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="hprsa">HPRSA</button>
-          <button class="filter-btn" data-filter="dapr">DA&amp;PR</button>
-        </div>
-      </div>
+  <div class="nav-backdrop" id="navBackdrop" onclick="closeDrawer()"></div>
+  <div class="nav-drawer" id="navDrawer">
+    <button class="drawer-close" onclick="closeDrawer()" aria-label="Close menu">✕</button>
+    <div class="nav-drawer-inner">
+      <a href="index.html#projects"   class="drawer-link" onclick="closeDrawer()">Work</a>
+      <a href="index.html#creative"   class="drawer-link" onclick="closeDrawer()">Creations</a>
+      <a href="index.html#experience" class="drawer-link" onclick="closeDrawer()">Experience</a>
+      <a href="index.html#about"      class="drawer-link" onclick="closeDrawer()">About</a>
+      <a href="https://www.linkedin.com/in/sergio-garcia-tx/" target="_blank" class="drawer-link" onclick="closeDrawer()">LinkedIn ↗</a>
+      <a href="resume.pdf" target="_blank" class="drawer-link drawer-cta" onclick="closeDrawer()">Download Résumé</a>
     </div>
   </div>
 
-  <hr class="section-divider" />
-
-  <!-- HPRSA SECTION -->
-  <div class="org-section" data-org="hprsa">
+  <!-- ── HEADER ── -->
+  <header class="gallery-header">
     <div class="container">
-      <div class="org-header">
-        <div class="org-badge green">H</div>
-        <div>
-          <p class="org-label">Hispanic PR Student Association</p>
-          <h2 class="org-name">HPRSA</h2>
-          <p class="org-role">Social Media Director · May 2025–Present</p>
-        </div>
+      <div class="gallery-header-inner">
+        <a href="index.html" class="back-link">← Back to Portfolio</a>
+        <h1 class="gallery-title">Every<br><em>Creation.</em></h1>
+        <p class="gallery-subtitle">All creative work made during my time in college, including flyers, reels, carousels and photo shoots — produced for HPRSA and DA&amp;PR since May 2025.</p>
+      </div>
+
+      <!-- Filter tabs -->
+      <div class="filter-row">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="hprsa">HPRSA</button>
+        <button class="filter-btn" data-filter="dapr">DA&amp;PR</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── GALLERY ── -->
+  <main>
+    <div class="container">
+
+      <!-- HPRSA divider -->
+      <div class="org-divider" data-org="hprsa">
+        <div class="org-divider-line"></div>
+        <span class="org-divider-label">HPRSA · Hispanic PR Student Association · Social Media Director</span>
+        <div class="org-divider-line"></div>
       </div>
 
       <div class="gallery-grid">
 
-        <!-- HPRSA Graphic Design — opens panel -->
-        <div class="creative-card" onclick="openPanel('hprsa-graphic')">
-          <div class="creative-thumb">
+        <!-- HPRSA Graphic Design — featured -->
+        <div class="gallery-card green-top full-width" data-category="hprsa">
+          <div class="gallery-thumb">
             <img src="hprsa-flyer.jpg" alt="HPRSA Event Flyers" onerror="this.style.display='none'" />
             <div class="thumb-overlay">
-              <span class="overlay-btn green-tint">View All</span>
+              <a href="https://www.instagram.com/hprsa.ut/" target="_blank" class="thumb-btn">View All ↗</a>
             </div>
           </div>
-          <div class="creative-body">
-            <p class="creative-tag">HPRSA · Graphic Design</p>
+          <div class="gallery-body">
+            <p class="gallery-tag">HPRSA · Graphic Design</p>
             <h3>Event Flyers, Professional Development &amp; Meeting Recaps</h3>
-            <p>25 posts consisting of 18 photos, five carousels and one reel — plus story post animations for each event flyer — promoting chapter meetings, socials and professional development events.</p>
-            <div class="metrics-bar">
+            <p>25 posts — 18 photos, five carousels and one reel — plus story post animations for each event flyer, promoting chapter meetings, socials and professional development events across Instagram.</p>
+            <div class="metrics-row">
               <div class="metric"><span class="metric-value">730</span><span class="metric-label">Likes</span></div>
               <div class="metric"><span class="metric-value">121</span><span class="metric-label">Comments</span></div>
               <div class="metric"><span class="metric-value">47,922</span><span class="metric-label">Reach</span></div>
             </div>
-            <p class="metrics-note">Combined totals since May 2025</p>
+            <p class="metrics-note">Avg. 1,917 reach per post · Combined totals since May 2025</p>
           </div>
         </div>
 
-        <!-- HPRSA Reel — links to Instagram -->
-        <div class="creative-card orange-top"
-          onclick="window.open('https://www.instagram.com/reel/DPxFW-CjG4x/?igsh=MTRoZTR6NnAzZjYycQ==','_blank')">
-          <div class="creative-thumb">
+        <!-- HPRSA Reel -->
+        <div class="gallery-card orange-top" data-category="hprsa">
+          <div class="gallery-thumb">
             <img src="hprsa-reel-thumb.jpg" alt="Hispanic Heritage Month Reel" onerror="this.style.display='none'" />
             <div class="thumb-overlay">
-              <span class="overlay-btn orange-tint">View Reel ↗</span>
+              <a href="https://www.instagram.com/reel/DPxFW-CjG4x/?igsh=MTRoZTR6NnAzZjYycQ==" target="_blank" class="thumb-btn">View Reel ↗</a>
             </div>
           </div>
-          <div class="creative-body">
-            <p class="creative-tag">HPRSA · Short-Form Video</p>
+          <div class="gallery-body">
+            <p class="gallery-tag">HPRSA · Short-Form Video</p>
             <h3>Hispanic Heritage Month Reel</h3>
-            <p>Produced and edited a reel for Hispanic Heritage Month featuring chapter members, event highlights and event coverage with music, captions and motion overlays.</p>
-            <div class="metrics-bar">
+            <p>Produced and edited a reel featuring chapter members, event highlights and event coverage with music, captions and motion overlays.</p>
+            <div class="metrics-row">
               <div class="metric"><span class="metric-value">76</span><span class="metric-label">Likes</span></div>
               <div class="metric"><span class="metric-value">13</span><span class="metric-label">Comments</span></div>
               <div class="metric"><span class="metric-value">1,796</span><span class="metric-label">Reach</span></div>
@@ -523,76 +484,65 @@
           </div>
         </div>
 
-        <!-- HPRSA Headshots — opens panel -->
-        <div class="creative-card full-width" onclick="openPanel('hprsa-photo')">
-          <div class="creative-thumb wide">
+        <!-- HPRSA Headshots -->
+        <div class="gallery-card green-top" data-category="hprsa">
+          <div class="gallery-thumb">
             <img src="hprsa-headshots-thumb.jpg" alt="HPRSA Headshot Sessions" onerror="this.style.display='none'" />
             <div class="thumb-overlay">
-              <span class="overlay-btn green-tint">View All</span>
+              <a href="https://www.instagram.com/hprsa.ut/" target="_blank" class="thumb-btn">View All ↗</a>
             </div>
           </div>
-          <div class="creative-body">
-            <p class="creative-tag">HPRSA · Photography</p>
+          <div class="gallery-body">
+            <p class="gallery-tag">HPRSA · Photography</p>
             <h3>Professional Headshot Sessions</h3>
-            <p>Organized and directed two free headshot sessions for HPRSA members; handled setup, lighting direction and post-session file distribution. 15 participants across both sessions.</p>
-            <div class="metrics-bar">
+            <p>Organized and directed two free headshot sessions for HPRSA members; handled setup, lighting direction and post-session file distribution.</p>
+            <div class="metrics-row">
               <div class="metric"><span class="metric-value">15</span><span class="metric-label">Participants</span></div>
-              <div class="metric"><span class="metric-value">2</span><span class="metric-label">Sessions Held</span></div>
+              <div class="metric"><span class="metric-value">2</span><span class="metric-label">Sessions</span></div>
             </div>
           </div>
         </div>
 
       </div>
-    </div>
-  </div>
 
-  <hr class="section-divider" />
-
-  <!-- DA&PR SECTION -->
-  <div class="org-section" data-org="dapr">
-    <div class="container">
-      <div class="org-header">
-        <div class="org-badge orange">D</div>
-        <div>
-          <p class="org-label orange">Diversity in Advertising &amp; Public Relations</p>
-          <h2 class="org-name">DA&amp;PR</h2>
-          <p class="org-role">Creative Director · May 2025–Present</p>
-        </div>
+      <!-- DA&PR divider -->
+      <div class="org-divider" data-org="dapr">
+        <div class="org-divider-line"></div>
+        <span class="org-divider-label">DA&amp;PR · Diversity in Advertising &amp; PR · Creative Director</span>
+        <div class="org-divider-line"></div>
       </div>
 
       <div class="gallery-grid">
 
-        <!-- DA&PR Carousel — links to Instagram -->
-        <div class="creative-card orange-top"
-          onclick="window.open('https://www.instagram.com/p/DNog6upgQ1m/?img_index=9&igsh=MXF2NmdteTR2Z3pyeg==','_blank')">
-          <div class="creative-thumb">
-            <img src="dapr-carousel-thumb.jpg" alt="DA&PR Internship Spotlight Carousel" onerror="this.style.display='none'" />
+        <!-- DA&PR Carousel -->
+        <div class="gallery-card orange-top" data-category="dapr">
+          <div class="gallery-thumb">
+            <img src="dapr-carousel-thumb.jpg" alt="Internship Spotlight Carousel" onerror="this.style.display='none'" />
             <div class="thumb-overlay">
-              <span class="overlay-btn orange-tint">View Carousel ↗</span>
+              <a href="https://www.instagram.com/p/DNog6upgQ1m/?img_index=9&igsh=MXF2NmdteTR2Z3pyeg==" target="_blank" class="thumb-btn">View Carousel ↗</a>
             </div>
           </div>
-          <div class="creative-body">
-            <p class="creative-tag">DA&amp;PR · Carousel Design</p>
+          <div class="gallery-body">
+            <p class="gallery-tag">DA&amp;PR · Carousel Design</p>
             <h3>Internship Spotlight Carousel</h3>
-            <p>10-page Instagram carousel spotlighting member internship experiences; combined branded typography, layout design and editorial storytelling.</p>
-            <div class="metrics-bar">
+            <p>10-page Instagram carousel spotlighting member internship experiences; combined branded typography, layout design and editorial storytelling to showcase peers.</p>
+            <div class="metrics-row">
               <div class="metric"><span class="metric-value">99</span><span class="metric-label">Likes</span></div>
               <div class="metric"><span class="metric-value">8</span><span class="metric-label">Comments</span></div>
             </div>
-            <p class="metrics-note">Views / reach to be added</p>
           </div>
         </div>
 
-        <!-- DA&PR Graphic Design — opens panel -->
-        <div class="creative-card orange-top" onclick="openPanel('dapr-graphic')">
-          <div class="creative-thumb">
-            <img src="dapr-flyer-thumb.jpg" alt="DA&PR Event Flyers" onerror="this.style.display='none'" />
+        <!-- DA&PR Graphic Design -->
+        <div class="gallery-card green-top" data-category="dapr">
+          <div class="gallery-thumb">
+            <img src="dapr-flyer-thumb.jpg" alt="DA&PR Flyers" onerror="this.style.display='none'" />
             <div class="thumb-overlay">
-              <span class="overlay-btn orange-tint">View All</span>
+              <a href="https://www.instagram.com/diversityinadvertising/" target="_blank" class="thumb-btn">View All ↗</a>
             </div>
           </div>
-          <div class="creative-body">
-            <p class="creative-tag">DA&amp;PR · Graphic Design</p>
+          <div class="gallery-body">
+            <p class="gallery-tag">DA&amp;PR · Graphic Design</p>
             <h3>Event Flyers &amp; Animated Story Posts</h3>
             <p>12 branded flyers for meetings, guest speaker events and socials, each paired with an animated story post version; maintained cohesive visual identity across all organizational communications.</p>
           </div>
@@ -600,182 +550,40 @@
 
       </div>
     </div>
-  </div>
+  </main>
 
-  <!-- BACK CTA -->
-  <div class="back-cta">
-    <a href="index.html" class="btn-primary">← Back to Portfolio</a>
-  </div>
-
-  <!-- FOOTER -->
   <footer>
-    <p>© 2026 Sergio Garcia · Austin, Texas · sergiogarciatx.github.io</p>
+    <p>© 2026 Sergio Garcia &nbsp;·&nbsp; Austin, Texas &nbsp;·&nbsp; sergiogarciatx.github.io</p>
     <div class="footer-flag"><span></span><span></span><span></span></div>
   </footer>
 
-  <!-- GRID PANEL -->
-  <div class="panel-overlay" id="panel">
-    <button class="panel-close" onclick="closePanel()">✕</button>
-    <div class="panel-inner">
-      <div class="panel-header">
-        <p class="panel-eyebrow" id="panel-label">Gallery</p>
-        <h2 id="panel-title">Title</h2>
-        <p id="panel-desc"></p>
-      </div>
-      <div class="panel-grid" id="panel-grid"></div>
-    </div>
-  </div>
-
-  <!-- ZOOM -->
-  <div class="zoom-overlay" id="zoom" onclick="closeZoom(event)">
-    <button class="zoom-close" onclick="closeZoom()">✕</button>
-    <img class="zoom-img" id="zoom-img" src="" alt="" />
-  </div>
-
   <script>
-    // ── FILTER ──
-    document.querySelectorAll('.filter-btn').forEach(btn => {
+    // Hamburger
+    const toggle   = document.getElementById('navToggle');
+    const drawer   = document.getElementById('navDrawer');
+    const backdrop = document.getElementById('navBackdrop');
+    toggle.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
+    function openDrawer()  { drawer.classList.add('open'); backdrop.classList.add('open'); toggle.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeDrawer() { drawer.classList.remove('open'); backdrop.classList.remove('open'); toggle.classList.remove('open'); document.body.style.overflow = ''; }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+    // Filter tabs
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards      = document.querySelectorAll('.gallery-card[data-category]');
+    const dividers   = document.querySelectorAll('.org-divider[data-org]');
+
+    filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const filter = btn.dataset.filter;
-        document.querySelectorAll('.org-section').forEach(sec => {
-          sec.classList.toggle('hidden', filter !== 'all' && sec.dataset.org !== filter);
-        });
-        document.querySelectorAll('.section-divider').forEach(d => {
-          d.style.display = filter === 'all' ? '' : 'none';
+        const f = btn.dataset.filter;
+        cards.forEach(c => { c.style.display = (f === 'all' || c.dataset.category === f) ? '' : 'none'; });
+        dividers.forEach(d => {
+          if (f === 'all') { d.style.display = ''; return; }
+          d.style.display = d.dataset.org === f ? '' : 'none';
         });
       });
-    });
-
-    // ── PANEL DATA ──
-    // TO ADD IMAGES: replace placeholder src strings with your actual filenames
-    const PANELS = {
-      'hprsa-graphic': {
-        label: 'HPRSA · Graphic Design',
-        title: 'Event Flyers, Professional Development &amp; <em>Meeting Recaps.</em>',
-        desc: '25 posts produced for HPRSA Instagram since May 2025 — 18 photos, 5 carousels and 1 reel, plus story post animations for each event flyer. Upload your image files to GitHub to display them here.',
-        items: [
-          { src: 'hprsa-photo-1.jpg',      ratio: 'portrait' },
-          { src: 'hprsa-photo-2.jpg',      ratio: 'portrait' },
-          { src: 'hprsa-photo-3.jpg',      ratio: 'portrait' },
-          { src: 'hprsa-photo-4.jpg',      ratio: 'portrait' },
-          { src: 'hprsa-photo-5.jpg',      ratio: 'portrait' },
-          { src: 'hprsa-photo-6.jpg',      ratio: 'portrait' },
-          { src: 'hprsa-photo-7.jpg',      ratio: 'portrait' },
-          { src: 'hprsa-photo-8.jpg',      ratio: 'portrait' },
-          { src: 'hprsa-photo-9.jpg',      ratio: 'portrait' },
-          { src: 'hprsa-carousel-1.jpg',   ratio: 'portrait' },
-          { src: 'hprsa-carousel-2.jpg',   ratio: 'portrait' },
-          { src: 'hprsa-carousel-3.jpg',   ratio: 'portrait' },
-          { src: 'hprsa-carousel-4.jpg',   ratio: 'portrait' },
-          { src: 'hprsa-carousel-5.jpg',   ratio: 'portrait' },
-          { src: 'hprsa-story-anim-1.gif', ratio: 'square', animated: true },
-          { src: 'hprsa-story-anim-2.gif', ratio: 'square', animated: true },
-          { src: 'hprsa-story-anim-3.gif', ratio: 'square', animated: true },
-          { src: 'hprsa-story-anim-4.gif', ratio: 'square', animated: true },
-        ]
-      },
-      'hprsa-photo': {
-        label: 'HPRSA · Photography',
-        title: 'Professional <em>Headshot Sessions.</em>',
-        desc: 'Photos from two free headshot sessions organized for HPRSA members — 15 participants across both sessions.',
-        items: [
-          { src: 'hprsa-headshot-1.jpg', ratio: 'portrait' },
-          { src: 'hprsa-headshot-2.jpg', ratio: 'portrait' },
-          { src: 'hprsa-headshot-3.jpg', ratio: 'portrait' },
-          { src: 'hprsa-headshot-4.jpg', ratio: 'portrait' },
-          { src: 'hprsa-headshot-5.jpg', ratio: 'portrait' },
-          { src: 'hprsa-headshot-6.jpg', ratio: 'portrait' },
-        ]
-      },
-      'dapr-graphic': {
-        label: 'DA&amp;PR · Graphic Design',
-        title: 'Event Flyers &amp; <em>Animated Story Posts.</em>',
-        desc: '12 branded flyers for meetings, guest speaker events and socials — each paired with an animated story post version.',
-        items: [
-          { src: 'dapr-flyer-1.jpg',      ratio: 'portrait' },
-          { src: 'dapr-flyer-2.jpg',      ratio: 'portrait' },
-          { src: 'dapr-flyer-3.jpg',      ratio: 'portrait' },
-          { src: 'dapr-flyer-4.jpg',      ratio: 'portrait' },
-          { src: 'dapr-flyer-5.jpg',      ratio: 'portrait' },
-          { src: 'dapr-flyer-6.jpg',      ratio: 'portrait' },
-          { src: 'dapr-story-anim-1.gif', ratio: 'square', animated: true },
-          { src: 'dapr-story-anim-2.gif', ratio: 'square', animated: true },
-          { src: 'dapr-story-anim-3.gif', ratio: 'square', animated: true },
-        ]
-      }
-    };
-
-    function openPanel(key) {
-      const data = PANELS[key];
-      if (!data) return;
-      document.getElementById('panel-label').innerHTML  = data.label;
-      document.getElementById('panel-title').innerHTML  = data.title;
-      document.getElementById('panel-desc').textContent = data.desc;
-
-      const grid = document.getElementById('panel-grid');
-      grid.innerHTML = '';
-
-      data.items.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'panel-item'
-          + (item.ratio === 'square' ? ' square' : item.ratio === 'wide' ? ' wide' : '');
-
-        const badge    = item.animated ? '<span class="anim-badge">Animated</span>' : '';
-        const mediaClass = 'panel-item-media' + (item.animated ? ' anim-bg' : '');
-
-        card.innerHTML = `
-          <div class="${mediaClass}">
-            ${badge}
-            <div class="panel-item-icon">
-              <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
-            </div>
-            <p class="panel-item-placeholder">Upload ${item.src}</p>
-          </div>`;
-
-        // Try to load the image
-        const img = new Image();
-        img.src = item.src;
-        img.onload = () => {
-          const media = card.querySelector('.panel-item-media');
-          media.classList.remove('anim-bg');
-          media.innerHTML = `${badge}<img src="${item.src}" alt="" />`;
-        };
-
-        card.addEventListener('click', () => openZoom(item.src));
-        grid.appendChild(card);
-      });
-
-      document.getElementById('panel').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closePanel() {
-      document.getElementById('panel').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    function openZoom(src) {
-      const img = document.getElementById('zoom-img');
-      img.src = src;
-      img.onerror = () => closeZoom();
-      document.getElementById('zoom').classList.add('open');
-    }
-
-    function closeZoom(e) {
-      if (!e || e.target === document.getElementById('zoom')) {
-        document.getElementById('zoom').classList.remove('open');
-        document.getElementById('zoom-img').src = '';
-      }
-    }
-
-    document.addEventListener('keydown', e => {
-      if (e.key !== 'Escape') return;
-      if (document.getElementById('zoom').classList.contains('open')) closeZoom();
-      else closePanel();
     });
   </script>
-
 </body>
 </html>
