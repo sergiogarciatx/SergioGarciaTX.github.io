@@ -638,10 +638,15 @@
       .hero-photo-offset { width: 200px; height: 250px; }
     }
 
+    /* Nav collapses earlier than the rest of the layout */
+    @media (max-width: 1080px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
     @media (max-width: 900px) {
       .container { padding: 0 1.5rem; }
       nav { padding: 1rem 1.5rem; }
-      .nav-links .nav-link:not(.cta) { display: none; }
       .projects-grid, .creative-grid, .exp-grid { grid-template-columns: 1fr; }
       .project-card.featured { flex-direction: column; }
       .project-visual { width: 100%; height: 140px; }
@@ -655,6 +660,67 @@
       .hero-inner { grid-template-columns: 1fr; }
       .hero-photo-wrap { display: none; }
     }
+
+    /* ── HAMBURGER + DRAWER ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column; justify-content: center; gap: 5px;
+      width: 36px; height: 36px;
+      background: none; border: none; outline: none;
+      cursor: pointer; padding: 6px 4px; flex-shrink: 0;
+    }
+    .nav-hamburger span {
+      display: block; height: 2px; width: 100%; border-radius: 2px;
+      background: var(--dark); transition: all 0.25s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-backdrop {
+      display: none; position: fixed; inset: 0; z-index: 98;
+      background: rgba(26,26,26,0.22);
+      backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+    }
+    .nav-backdrop.open { display: block; }
+
+    .nav-drawer {
+      position: fixed; top: 0; right: 0; bottom: 0; z-index: 99;
+      width: min(300px, 82vw);
+      background: rgba(245,242,236,0.97);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border-left: 1px solid rgba(0,104,71,0.12);
+      box-shadow: -6px 0 36px rgba(0,0,0,0.1);
+      transform: translateX(100%);
+      transition: transform 0.28s cubic-bezier(0.4,0,0.2,1);
+      padding-top: 76px;
+    }
+    .nav-drawer.open { transform: translateX(0); }
+
+    .nav-drawer-inner {
+      display: flex; flex-direction: column;
+      padding: 1.25rem 1.5rem; gap: 0.2rem;
+    }
+    .drawer-link {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600;
+      font-size: 1rem; color: var(--dark); text-decoration: none;
+      padding: 0.8rem 0.75rem; border-radius: var(--r-md);
+      border-bottom: 1px solid rgba(0,104,71,0.07);
+      transition: background 0.18s, color 0.18s;
+    }
+    .drawer-link:last-child { border-bottom: none; }
+    .drawer-link:hover { background: rgba(0,104,71,0.07); color: var(--green); }
+    .drawer-cta {
+      margin-top: 0.75rem;
+      background: var(--green); color: #fff !important;
+      text-align: center; border-radius: var(--r-pill) !important;
+      font-weight: 700; letter-spacing: 0.06em;
+      box-shadow: 0 4px 14px rgba(0,104,71,0.25);
+      border-bottom: none !important; padding: 0.85rem 1rem;
+    }
+    .drawer-cta:hover { background: var(--green-dark) !important; }
+
   </style>
 </head>
 <body>
@@ -670,6 +736,22 @@
       <a href="https://www.linkedin.com/in/sergio-garcia-tx/" target="_blank" class="nav-link">LinkedIn</a>
       <a href="resume.pdf" target="_blank" class="nav-link cta">Résumé ↗</a>
     </div>
+
+    <button class="nav-hamburger" id="navToggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-drawer" id="navDrawer">
+      <div class="nav-drawer-inner">
+        <a href="#projects"   class="drawer-link" onclick="closeDrawer()">Work</a>
+        <a href="#creative"   class="drawer-link" onclick="closeDrawer()">Creations</a>
+        <a href="#experience" class="drawer-link" onclick="closeDrawer()">Experience</a>
+        <a href="#about"      class="drawer-link" onclick="closeDrawer()">About</a>
+        <a href="https://www.linkedin.com/in/sergio-garcia-tx/" target="_blank" class="drawer-link" onclick="closeDrawer()">LinkedIn ↗</a>
+        <a href="resume.pdf"  target="_blank" class="drawer-link drawer-cta" onclick="closeDrawer()">Download Résumé</a>
+      </div>
+    </div>
+    <div class="nav-backdrop" id="navBackdrop" onclick="closeDrawer()"></div>
   </nav>
 
   <!-- ══════════════════════════════════════
@@ -1145,5 +1227,29 @@
     <div class="footer-flag"><span></span><span></span><span></span></div>
   </footer>
 
+
+  <script>
+    const toggle   = document.getElementById('navToggle');
+    const drawer   = document.getElementById('navDrawer');
+    const backdrop = document.getElementById('navBackdrop');
+
+    toggle.addEventListener('click', () => {
+      drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+    });
+
+    function openDrawer() {
+      drawer.classList.add('open');
+      backdrop.classList.add('open');
+      toggle.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      backdrop.classList.remove('open');
+      toggle.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+  </script>
 </body>
 </html>
