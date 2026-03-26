@@ -638,10 +638,9 @@
       .hero-photo-offset { width: 200px; height: 250px; }
     }
 
-    /* Nav collapses earlier than the rest of the layout */
+    /* Nav links hidden below 1081px */
     @media (max-width: 1080px) {
       .nav-links { display: none; }
-      .nav-hamburger { display: flex; }
     }
 
     @media (max-width: 900px) {
@@ -662,15 +661,20 @@
     }
 
     /* ── HAMBURGER + DRAWER ── */
+    /* Hamburger visible by default, hidden on wide screens */
     .nav-hamburger {
-      display: none;
+      display: flex;
       flex-direction: column; justify-content: center; gap: 5px;
       width: 36px; height: 36px;
       background: none; border: none; outline: none;
       cursor: pointer; padding: 6px 4px; flex-shrink: 0;
     }
+    @media (min-width: 1081px) {
+      .nav-hamburger { display: none; }
+      .nav-links     { display: flex !important; }
+    }
     .nav-hamburger span {
-      display: block; height: 2px; width: 100%; border-radius: 2px;
+      display: block; height: 2.5px; width: 100%; border-radius: 2px;
       background: var(--dark); transition: all 0.25s;
     }
     .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
