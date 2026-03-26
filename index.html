@@ -374,13 +374,34 @@
       padding: 0.5rem 1.1rem; border-radius: var(--r-pill);
       border: 1.5px solid rgba(0,104,71,0.28);
       background: rgba(0,104,71,0.06);
-      transition: background 0.2s, transform 0.2s;
+      position: relative; overflow: hidden;
+      transition: background 0.25s, transform 0.25s, box-shadow 0.25s, border-color 0.25s;
     }
+    /* Glass shimmer sweep on hover */
+    .project-link::before {
+      content: ''; position: absolute;
+      top: 0; left: -100%; width: 60%; height: 100%;
+      background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
+      transform: skewX(-20deg);
+      transition: left 0.45s ease;
+      pointer-events: none;
+    }
+    .project-link:hover::before { left: 160%; }
     .project-card.orange-top .project-link {
       color: var(--orange); border-color: rgba(191,87,0,0.28); background: rgba(191,87,0,0.06);
     }
-    .project-link:hover { background: rgba(0,104,71,0.13); transform: translateY(-1px); }
-    .project-card.orange-top .project-link:hover { background: rgba(191,87,0,0.13); }
+    .project-link:hover {
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-color: rgba(0,104,71,0.45);
+      box-shadow: 0 4px 18px rgba(0,104,71,0.14), inset 0 1px 0 rgba(255,255,255,0.9);
+      transform: translateY(-2px);
+    }
+    .project-card.orange-top .project-link:hover {
+      background: rgba(255,255,255,0.65);
+      border-color: rgba(191,87,0,0.45);
+      box-shadow: 0 4px 18px rgba(191,87,0,0.14), inset 0 1px 0 rgba(255,255,255,0.9);
+    }
 
     /* ══════════════════════════════════════
        CREATIVE WORK
@@ -415,6 +436,44 @@
       position: absolute; inset: 0; transition: transform 0.35s;
     }
     .creative-card:hover .creative-thumb img { transform: scale(1.04); }
+
+    /* Thumbnail hover overlay */
+    .thumb-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      background: rgba(0,0,0,0); display: flex;
+      align-items: center; justify-content: center;
+      transition: background 0.3s; pointer-events: none;
+    }
+    .creative-card:hover .thumb-overlay,
+    .project-card:hover .thumb-overlay { background: rgba(10,30,20,0.38); pointer-events: auto; }
+    .thumb-overlay::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%);
+      transform: translateX(-100%) skewX(-20deg);
+      transition: transform 0.55s ease; pointer-events: none;
+    }
+    .creative-card:hover .thumb-overlay::before,
+    .project-card:hover .thumb-overlay::before { transform: translateX(200%) skewX(-20deg); }
+    .thumb-btn {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #fff; text-decoration: none;
+      padding: 0.65rem 1.4rem; border-radius: var(--r-pill);
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid rgba(255,255,255,0.55);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.4);
+      opacity: 0; transform: translateY(8px) scale(0.95);
+      transition: opacity 0.28s, transform 0.28s;
+      position: relative; z-index: 3;
+    }
+    .creative-card:hover .thumb-btn,
+    .project-card:hover .thumb-btn { opacity: 1; transform: translateY(0) scale(1); }
+    .thumb-btn:hover {
+      background: rgba(255,255,255,0.3);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.6);
+    }
     .creative-body { padding: 1.5rem 1.75rem; }
     .creative-tag {
       font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
@@ -844,6 +903,9 @@
               style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:0;"
               onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
             <p class="project-visual-label" style="display:none;">ERCOT</p>
+            <div class="thumb-overlay">
+              <a href="#" class="thumb-btn">View Project ↗</a>
+            </div>
           </div>
           <div class="project-body">
             <p class="project-tag">Public Relations · Crisis Communications</p>
@@ -856,7 +918,6 @@
               <span class="deliverable-tag">Crisis Strategy</span>
               <span class="deliverable-tag">Stakeholder Messaging</span>
             </div>
-            <a href="#" class="project-link">View Project ↗</a>
           </div>
         </div>
 
@@ -865,6 +926,9 @@
           <div class="project-thumb">
             <img src="amys-thumb.jpg" alt="Amy's Ice Cream Campaign"
               onerror="this.style.display='none';this.nextElementSibling.classList.add('visible')" />
+            <div class="thumb-overlay">
+              <a href="#" class="thumb-btn">View Project ↗</a>
+            </div>
             <div class="project-thumb-placeholder"><span>Amy's</span></div>
           </div>
           <div class="project-body">
@@ -878,7 +942,6 @@
               <span class="deliverable-tag">Audience Personas</span>
               <span class="deliverable-tag">Budget Allocation</span>
             </div>
-            <a href="#" class="project-link">View Project ↗</a>
           </div>
         </div>
 
@@ -887,6 +950,9 @@
           <div class="project-thumb">
             <img src="simplygum-thumb.jpg" alt="Simply Gum SWOT Analysis"
               onerror="this.style.display='none';this.nextElementSibling.classList.add('visible')" />
+            <div class="thumb-overlay">
+              <a href="#" class="thumb-btn">View Project ↗</a>
+            </div>
             <div class="project-thumb-placeholder"><span>Simply Gum</span></div>
           </div>
           <div class="project-body">
@@ -899,7 +965,6 @@
               <span class="deliverable-tag">Competitive Research</span>
               <span class="deliverable-tag">Market Positioning</span>
             </div>
-            <a href="#" class="project-link">View Project ↗</a>
           </div>
         </div>
 
@@ -908,6 +973,9 @@
           <div class="project-thumb">
             <img src="apstyle-thumb.jpg" alt="AP Style Writing Portfolio"
               onerror="this.style.display='none';this.nextElementSibling.classList.add('visible')" />
+            <div class="thumb-overlay">
+              <a href="#" class="thumb-btn">View Project ↗</a>
+            </div>
             <div class="project-thumb-placeholder"><span>AP Style</span></div>
           </div>
           <div class="project-body">
@@ -920,7 +988,6 @@
               <span class="deliverable-tag">AP Style</span>
               <span class="deliverable-tag">Editorial Writing</span>
             </div>
-            <a href="#" class="project-link">View Project ↗</a>
           </div>
         </div>
 
@@ -965,6 +1032,9 @@
         <div class="creative-card orange-top" style="cursor:pointer;" onclick="window.open('https://www.instagram.com/reel/DPxFW-CjG4x/?igsh=MTRoZTR6NnAzZjYycQ==','_blank')">
           <div class="creative-thumb">
             <img src="hprsa-reel-thumb.jpg" alt="Hispanic Heritage Month Reel" onerror="this.style.display='none'" />
+            <div class="thumb-overlay">
+              <a href="https://www.instagram.com/reel/DPxFW-CjG4x/?igsh=MTRoZTR6NnAzZjYycQ==" target="_blank" class="thumb-btn" onclick="event.stopPropagation()">View Reel ↗</a>
+            </div>
           </div>
           <div class="creative-body">
             <p class="creative-tag">HPRSA · Short-Form Video</p>
@@ -982,6 +1052,9 @@
         <div class="creative-card orange-top" style="cursor:pointer;" onclick="window.open('https://www.instagram.com/p/DNog6upgQ1m/?img_index=9&igsh=MXF2NmdteTR2Z3pyeg==','_blank')">
           <div class="creative-thumb">
             <img src="dapr-carousel-thumb.jpg" alt="Internship Spotlight Carousel" onerror="this.style.display='none'" />
+            <div class="thumb-overlay">
+              <a href="https://www.instagram.com/p/DNog6upgQ1m/?img_index=9&igsh=MXF2NmdteTR2Z3pyeg==" target="_blank" class="thumb-btn" onclick="event.stopPropagation()">View Carousel ↗</a>
+            </div>
           </div>
           <div class="creative-body">
             <p class="creative-tag">DA&amp;PR · Carousel Design</p>
