@@ -363,6 +363,10 @@ footer p{font-size:0.76rem;color:var(--warm-gray);font-family:'Plus Jakarta Sans
       var img = document.createElement('img');
       img.src = f;
       img.alt = f;
+      img.addEventListener('load', function() {
+        var lbl = this.parentNode.querySelector('.tile-label');
+        if (lbl) lbl.style.display = 'none';
+      });
       var label = document.createElement('span');
       label.className = 'tile-label';
       label.textContent = f.replace(/\.jpg$/, '').replace(/\.gif$/, '').replace(/-/g, ' ');
