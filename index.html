@@ -791,10 +791,14 @@
       section { padding: 4rem 0; }
     }
 
-    /* Small screens stack hero, hide photo */
+    /* Small screens stack hero, show photo centered */
     @media (max-width: 640px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-photo-wrap { display: none; }
+      .hero-inner { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+      .hero-photo-wrap { display: flex; justify-content: center; margin-top: 1.5rem; order: -1; }
+      .hero-photo, .hero-photo-placeholder { width: 160px; height: 200px; }
+      .hero-photo-offset { width: 160px; height: 200px; }
+      .hero-bio { max-width: 100%; }
+      .hero-buttons { justify-content: center; }
     }
 
     /* ── HAMBURGER + DRAWER ── */
@@ -1326,7 +1330,7 @@
       <a href="#creative" class="nav-link">Creations</a>
       <a href="#experience" class="nav-link">Experience</a>
       <a href="#about" class="nav-link">About</a>
-      <a href="https://www.linkedin.com/in/sergiogarciatx/" target="_blank" class="nav-link cta">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/sergio-garcia-03930b337/" target="_blank" class="nav-link cta">LinkedIn</a>
     </div>
 
     <button class="nav-hamburger" id="navToggle" aria-label="Open menu">
@@ -1344,7 +1348,7 @@
       <a href="#creative"   class="drawer-link" onclick="closeDrawer()">Creations</a>
       <a href="#experience" class="drawer-link" onclick="closeDrawer()">Experience</a>
       <a href="#about"      class="drawer-link" onclick="closeDrawer()">About</a>
-      <a href="https://www.linkedin.com/in/sergiogarciatx/" target="_blank" class="drawer-link drawer-cta" onclick="closeDrawer()">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/sergio-garcia-03930b337/" target="_blank" class="drawer-link drawer-cta" onclick="closeDrawer()">LinkedIn</a>
     </div>
   </div>
 
@@ -1378,7 +1382,7 @@
 
           <div class="hero-buttons">
             <a href="#projects" class="btn-solid">View My Work</a>
-            <a href="https://www.linkedin.com/in/sergiogarciatx/" target="_blank" class="btn-orange-glass">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/sergio-garcia-03930b337/" target="_blank" class="btn-orange-glass">LinkedIn</a>
           </div>
 
         </div>
@@ -1855,7 +1859,7 @@
         <p class="section-sub">Whether you're a recruiter, a brand or a fellow creative I'd love to connect and talk about what we can build together.</p>
         <div class="contact-buttons">
           <a href="mailto:sergiogarcia@utexas.edu" class="contact-link primary">Email Me</a>
-          <a href="https://www.linkedin.com/in/sergiogarciatx/" target="_blank" class="contact-link orange">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/sergio-garcia-03930b337/" target="_blank" class="contact-link orange">LinkedIn</a>
         </div>
       </div>
     </div>
